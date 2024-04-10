@@ -1,0 +1,28 @@
+{
+  "name": "@d0422/react-hooks",
+  "version": "0.0.0",
+  "description": "react hooks for fast development",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "homepage": "https://github.com/d0422/react-hooks",
+  "scripts": {
+    "test": "test",
+    "prepare": "npm run build",
+    "build": "rm -rf ./dist && tsc"
+  },
+  "keywords": [
+    "react",
+    "hooks"
+  ],
+  "author": "d0422 <rlfehd2013@naver.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.75",
+    "@types/react-dom": "^18.2.24",
+    "typescript": "^5.4.4"
+  }
+}
