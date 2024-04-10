@@ -17,6 +17,7 @@ export default function useAnimation(
   const handleUnmountAnimationEnd = () => {
     if (animationClassName === unmountAnimationClassName) {
       unmountCallback && unmountCallback();
+      setAnimationClassName(mountAnimationClassName);
     }
   };
 
