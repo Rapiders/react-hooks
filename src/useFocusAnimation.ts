@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useRef } from 'react';
-import useAnimation from './useAnimation';
 
 export default function useFocusAnimation<T extends HTMLElement>(
   onFocusClassName: string,
@@ -7,18 +6,16 @@ export default function useFocusAnimation<T extends HTMLElement>(
   threshold?: number
 ) {
   const elementRef = useRef<T>(null);
-  const { animationClassName, triggerUnmountAnimation } = useAnimation(
-    onFocusClassName,
-    onFocusOutClassName||''
-  );
 
   const handleScroll: IntersectionObserverCallback = useCallback(([entry]) => {
     const { current } = elementRef;
     if (current) {
       if (entry.isIntersecting) {
-        if (animationClassName)
-          return current.classList.add(animationClassName);
-        triggerUnmountAnimation();
+        onFocusOutClassName && current.classList.remove(onFocusOutClassName);
+        current.classList.add(onFocusClassName);
+      } else {
+        current.classList.remove(onFocusClassName);
+        onFocusOutClassName && current.classList.add(onFocusOutClassName);
       }
     }
   }, []);
