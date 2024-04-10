@@ -75,3 +75,17 @@ useAnimation manages animationClassName.
 
 useFocusAnimation activates the animation when the corresponding HTMLElement enters the screen.
 You have to register ref to animation HTMLElement.
+
+### useDragIndexCarousel
+
+With "useDragIndexCarousel," you can easily implement a dragable Index Carousel.
+
+you can set `startIndex` and `minMove`.
+
+`minMove` : minimum movement that the index goes over.
+
+### useDragCarouselIndex
+
+this hook must be called in carousel provider which is provided by useDragIndexCarousel Component.
+
+you can get current index in carousel children
