@@ -87,5 +87,14 @@ you can set `startIndex` and `minMove`.
 ### useDragCarouselIndex
 
 this hook must be called in carousel provider which is provided by useDragIndexCarousel Component.
+carousel provider renders children elements. It already contains `display:flex` property.
 
-you can get current index in carousel children
+you can get current index in carousel children.
+
+### useCarousel
+
+useCarousel returns `CarouselWrapper`, `next`, `prev`, `index`
+
+`CarouselWrapper`: renders children elements. It already contains `display:flex` property.
+`next`: increase index
+`prev`: decrease index

@@ -63,6 +63,7 @@ function _useDragIndexCarousel(
   };
 
   const style = {
+    display: 'flex',
     transform: `translateX(${-index * getSliderWidth() + transX}px)`,
     transitionDuration: '300ms',
     transitionTimingFunction: 'ease-out',
@@ -110,7 +111,6 @@ function DragIndexCarousel({
     >
       <div
         ref={ref}
-        className="flex"
         style={style}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
