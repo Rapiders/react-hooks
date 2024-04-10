@@ -23,15 +23,17 @@ export function useCarousel(dataLength: number, startIndex = 0) {
   };
 
   const CarouselWrapper = ({ children }: { children: ReactNode }) => {
-    <div
-      style={{
-        overflow: 'hidden',
-      }}
-    >
-      <div ref={ref} style={style}>
-        {children}
+    return (
+      <div
+        style={{
+          overflow: 'hidden',
+        }}
+      >
+        <div ref={ref} style={style}>
+          {children}
+        </div>
       </div>
-    </div>;
+    );
   };
 
   return {
