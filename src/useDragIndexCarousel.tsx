@@ -17,6 +17,7 @@ function _useDragIndexCarousel(
   minMove = 60,
   startIndex = 0
 ) {
+  const [isMouseDown, setMouseDown] = useState(false);
   const [touchStartX, setTouchStartX] = useState(0);
   const [transX, setTransX] = useState(0);
   const [index, setIndex] = useState(startIndex);
@@ -26,6 +27,7 @@ function _useDragIndexCarousel(
     setTouchStartX(e.touches[0].clientX);
   };
   const handleScrollStart = (e: React.MouseEvent<HTMLDivElement>) => {
+    setMouseDown(true);
     setTouchStartX(e.pageX);
   };
 
@@ -35,8 +37,10 @@ function _useDragIndexCarousel(
   };
 
   const handleScrollMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const moveWidth = e.pageX - touchStartX;
-    setTransX(moveWidth);
+    if (isMouseDown) {
+      const moveWidth = e.pageX - touchStartX;
+      setTransX(moveWidth);
+    }
   };
 
   const getSliderWidth = () => {
@@ -47,6 +51,7 @@ function _useDragIndexCarousel(
   };
 
   const handleMoveEnd = () => {
+    setMouseDown(false);
     const limitPage = pageLimit;
     if (transX > minMove) {
       setIndex((prev) => (prev > 0 ? prev - 1 : prev));
@@ -101,6 +106,7 @@ function DragIndexCarousel({
       style={{
         overflow: 'hidden',
       }}
+      draggable={false}
     >
       <div
         ref={ref}
