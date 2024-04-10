@@ -9,7 +9,7 @@ export default function useFocusAnimation<T extends HTMLElement>(
   const elementRef = useRef<T>(null);
   const { animationClassName, triggerUnmountAnimation } = useAnimation(
     onFocusClassName,
-    onFocusOutClassName
+    onFocusOutClassName||''
   );
 
   const handleScroll: IntersectionObserverCallback = useCallback(([entry]) => {
