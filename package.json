@@ -1,6 +1,6 @@
 {
   "name": "@d0422/react-hooks",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "react hooks for fast development",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
