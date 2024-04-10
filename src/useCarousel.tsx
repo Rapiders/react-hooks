@@ -12,8 +12,8 @@ export function useCarousel(dataLength: number, startIndex = 0) {
     return window.innerWidth;
   };
 
-  const next = () => setIndex((prev) => (prev < dataLength ? prev + 1 : prev));
-  const prev = () => setIndex((prev) => (prev > 0 ? prev - 1 : prev));
+  const next = () => setIndex((prev) => (prev < dataLength ? prev + 1 : 0));
+  const prev = () => setIndex((prev) => (prev > 0 ? prev - 1 : dataLength));
 
   const style = {
     transform: `translateX(${-index * getSliderWidth()}px)`,
