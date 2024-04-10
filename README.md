@@ -26,7 +26,7 @@ simple hook to change input components(uncontroll component) to controll compone
 
 The animation of this package is based on ClassName by default.
 
-So first, Declare css classNames that show animations
+So first, declare css classNames that show animations
 
 ```css
 @keyframes fadeIn {
@@ -59,9 +59,11 @@ So first, Declare css classNames that show animations
 }
 ```
 
+then, you can use className as parameters of animation hooks
+
 ### useAnimation
 
-useAnimation manages AnimationClassName.
+useAnimation manages animationClassName.
 
 `triggerUnmountAnimation` : trigger unmount animation.
 
