@@ -1,5 +1,23 @@
-import { ReactNode, useRef, useState } from 'react';
-import React from 'react';
+import React, {
+  ForwardedRef,
+  ReactNode,
+  forwardRef,
+  useRef,
+  useState,
+} from 'react';
+
+const CarouselWrapper = forwardRef(
+  (
+    { children, style }: { children: ReactNode; style: React.CSSProperties },
+    ref: ForwardedRef<HTMLDivElement>
+  ) => (
+    <div style={{ overflow: 'hidden' }}>
+      <div ref={ref} style={style}>
+        {children}
+      </div>
+    </div>
+  )
+);
 
 export function useCarousel(dataLength: number, startIndex = 0) {
   const ref = useRef<HTMLDivElement>(null);
@@ -12,7 +30,7 @@ export function useCarousel(dataLength: number, startIndex = 0) {
     return window.innerWidth;
   };
 
-  const next = () => setIndex((prev) => (prev < dataLength ? prev + 1 : 0));
+  const next = () => setIndex((prev) => (prev < dataLength - 1 ? prev + 1 : 0));
   const prev = () => setIndex((prev) => (prev > 0 ? prev - 1 : dataLength));
 
   const style = {
@@ -22,22 +40,10 @@ export function useCarousel(dataLength: number, startIndex = 0) {
     display: 'flex',
   };
 
-  const CarouselWrapper = ({ children }: { children: ReactNode }) => {
-    return (
-      <div
-        style={{
-          overflow: 'hidden',
-        }}
-      >
-        <div ref={ref} style={style}>
-          {children}
-        </div>
-      </div>
-    );
-  };
-
   return {
     CarouselWrapper,
+    style,
+    ref,
     index,
     next,
     prev,
