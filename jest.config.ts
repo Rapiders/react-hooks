@@ -8,7 +8,7 @@ module.exports = {
   },
   preset: 'ts-jest',
   rootDir: '.',
-  testMatch: ['**/?(*)+(test).ts'],
+  testMatch: ['**/?(*)+(test).ts', '**/?(*)+(test).tsx'],
   setupFilesAfterEnv: ['./jest.setup.ts'],
   resetMocks: true,
   // 💡 tsconfig 에서 `baseUrl` 과 `paths` 를 사용하는 경우 필요
