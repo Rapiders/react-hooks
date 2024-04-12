@@ -19,7 +19,7 @@ const CarouselWrapper = forwardRef(
   )
 );
 
-export function useCarousel(dataLength: number, startIndex = 0) {
+export default function useCarousel(dataLength: number, startIndex = 0) {
   const ref = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(startIndex);
 

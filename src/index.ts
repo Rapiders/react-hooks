@@ -1,9 +1,10 @@
-import useInput from './useInput';
+import useInput from './useInput/useInput';
 import useAnimation from './useAnimation/useAnimation';
 import useFocusAnimation from './useFocusAnimation';
 import { useDragCarouselIndex } from './useDragIndexCarousel';
 import useDragIndexCarousel from './useDragIndexCarousel';
-import { useCarousel } from './useCarousel';
+import useCarousel from './useCarousel';
+import useScrollRatio from './useScrollRatio';
 
 export {
   useInput,
@@ -12,4 +13,5 @@ export {
   useDragCarouselIndex,
   useDragIndexCarousel,
   useCarousel,
+  useScrollRatio,
 };
