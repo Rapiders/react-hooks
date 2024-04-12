@@ -12,6 +12,10 @@
     "esModuleInterop": true,
     "typeRoots": ["index.d.ts", "node_modules/@types"],
     "strictNullChecks": true,
-    "moduleResolution": "Bundler"
+    "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   }
 }
