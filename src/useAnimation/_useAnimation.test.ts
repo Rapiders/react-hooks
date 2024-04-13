@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react';
-import useAnimation from './useAnimation';
+import { _useAnimation } from './useAnimation';
 
 const MOUNT_ANIMATION_CLASSNAME = 'mountAnimation';
 const UNMOUNT_ANIMATION_CLASSNAME = 'unmountAnimation';
@@ -7,7 +7,7 @@ const UNMOUNT_ANIMATION_CLASSNAME = 'unmountAnimation';
 describe('useAnimation Test', () => {
   it('triggerUnmountAnimation이 수행되면 unmountAnimationClassName으로 상태를 변경할 수 있다.', () => {
     const { result } = renderHook(() =>
-      useAnimation(MOUNT_ANIMATION_CLASSNAME, UNMOUNT_ANIMATION_CLASSNAME)
+      _useAnimation(MOUNT_ANIMATION_CLASSNAME, UNMOUNT_ANIMATION_CLASSNAME)
     );
     expect(result.current.animationClassName).toBe(MOUNT_ANIMATION_CLASSNAME);
     act(() => result.current.triggerUnmountAnimation());
@@ -17,7 +17,7 @@ describe('useAnimation Test', () => {
   it('handleUnmountAnimationEnd이 실행되면 unmountCallback을 수행할 수 있다.', () => {
     const unmountCallback = jest.fn();
     const { result } = renderHook(() =>
-      useAnimation(
+      _useAnimation(
         MOUNT_ANIMATION_CLASSNAME,
         UNMOUNT_ANIMATION_CLASSNAME,
         unmountCallback

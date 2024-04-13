@@ -63,13 +63,12 @@ then, you can use className as parameters of animation hooks
 
 ### useAnimation
 
-useAnimation manages animationClassName.
+useAnimation manages mount/unmountAnimation.
 
-`triggerUnmountAnimation` : trigger unmount animation.
-
-`handleUnmountAnimationend` : manage className automatically. You have to register this funciton to animation HTMLElement.
-
-`unmountCallback` : this callback is called when animationEnded.
+`AnimationWrapper`: Apply mount/unmountAnimation to the children prop provided in the AnimationWrapper. you can provide style prop to apply style to Wrapper
+`show` : trigger mountAnimation
+`hide` : trigger unmountAnimation and unmount children prop
+`isShow` : indicates the status for child props.
 
 ### useFocusAnimation
 
