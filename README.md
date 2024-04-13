@@ -2,6 +2,9 @@
 
 It is a package that collects hooks that are often used for quick development.
 
+**Warning**
+Test code is not fully prepared yet. Please note.
+
 # Usage
 
 ```
