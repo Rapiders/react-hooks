@@ -1,6 +1,6 @@
 import { fireEvent, render, renderHook, screen } from '@testing-library/react';
 import useAnimation from './useAnimation';
-import React, { useEffect } from 'react';
+import React from 'react';
 describe('useAnimation 테스트', () => {
   it('show를 호출 AnimationWrapper의 children이 화면에 보인다.', () => {
     const Test = () => {

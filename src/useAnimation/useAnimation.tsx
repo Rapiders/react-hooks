@@ -11,6 +11,7 @@ export function _useAnimation(
 
   const triggerUnmountAnimation = () => {
     setAnimationClassName(unmountAnimationClassName);
+    if (unmountAnimationClassName === undefined) handleUnmountAnimationEnd();
   };
 
   const handleUnmountAnimationEnd = () => {
