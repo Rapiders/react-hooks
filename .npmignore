@@ -6,3 +6,4 @@ tsconfig.json
 .storybook
 jest.config.ts 
 jest.setup.ts
+build-storybook.log
