@@ -66,8 +66,11 @@ then, you can use className as parameters of animation hooks
 useAnimation manages mount/unmountAnimation.
 
 `AnimationWrapper`: Apply mount/unmountAnimation to the children prop provided in the AnimationWrapper. you can provide style prop to apply style to Wrapper
+
 `show` : trigger mountAnimation
+
 `hide` : trigger unmountAnimation and unmount children prop
+
 `isShow` : indicates the status for child props.
 
 ### useFocusAnimation
@@ -95,9 +98,13 @@ you can get current index in carousel children.
 useCarousel returns `CarouselWrapper`, `next`, `prev`, `index`, `style`, `ref`
 
 `CarouselWrapper`: renders children elements. It already contains `display:flex` property.
+
 `next`: increase index
+
 `prev`: decrease index
+
 `ref`: you have to assign ref to Carousel Wrapper
+
 `style`: you have to assign style to Carousel Wrapper
 
 ```tsx
