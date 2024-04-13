@@ -1,0 +1,44 @@
+import { Canvas, Meta, Description } from '@storybook/blocks';
+import * as AnimationStories from './Animation.stories';
+
+<Meta of={AnimationStories} />
+
+# useAnimation
+
+useAnimation 함수에 mount, unmount시에 보여줄 class기반의 애니메이션을 선언적인 함수 형태로 관리하게 해줍니다.
+
+## 함수인자
+
+option 객체를 받으며, mountClassName, unmountCalssName을 optional 형태의 인자로 받습니다.
+둘다 존재하지 않는다면, mount, unmount만 처리하게됩니다.
+
+## 반환값
+
+`show`: 마운트 애니메이션을 일으키는 함수입니다.
+
+`hide`: 언마운트 애니메이션을 일으키고, 언마운트 시키는 함수입니다.
+
+`AnimationWrapper` : AnimationWrapper의 children props에 대해서 마운트 애니메이션, 언마운트 애니메이션을 적용합니다.
+
+`isShow` : AnimationWrapper 내부의 children이 보이는지, 보이지 않는지를 표기하는 상태입니다.
+
+Default Story는 마운트, 언마운트시의 애니메이션을 관리하는 예시입니다.
+
+### mountClassName, unmountClassName이 제공된 경우
+
+```typescript
+const { show, hide, isShow, AnimationWrapper } = useAnimation({
+  mountClassName: 'show',
+  unmountClassName: 'hide',
+});
+```
+
+<Canvas of={AnimationStories.defaultStory} />
+
+### mountClassName, unmountClassName이 제공되지 않은 경우
+
+```typescript
+const { show, hide, isShow, AnimationWrapper } = useAnimation({});
+```
+
+<Canvas of={AnimationStories.nonAnimation} />
