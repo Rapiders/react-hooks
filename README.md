@@ -10,7 +10,7 @@ Test code is not fully prepared yet. Please note.
 # Usage
 
 ```
-npm install @d0422/react-hooks
+npm install @rapiders/react-hooks
 ```
 
 ### useInput
