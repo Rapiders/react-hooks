@@ -3,3 +3,6 @@ src
 .gitignore
 tsconfig.json
 .git
+.storybook
+jest.config.ts 
+jest.setup.ts
