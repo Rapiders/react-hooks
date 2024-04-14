@@ -46,6 +46,9 @@ button {
   width: 100px;
   font-size: 20px;
 }
+button:disabled {
+  background-color: gray;
+}
 
 .flex {
   display: flex;

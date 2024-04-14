@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Animation } from './Animation';
 
 const meta = {
-  title: 'useAnimation/animation',
+  title: 'useAnimation/useAnimation',
   component: Animation,
   parameters: {
     layout: 'centered',
