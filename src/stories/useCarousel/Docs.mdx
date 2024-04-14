@@ -31,4 +31,45 @@ infinity를 통해 Carousel이 끝에 도달했을 때 다음 요소를 보여�
 
 ### 기본 사용 예시
 
+```typescript
+export default function Carousel() {
+  const images = [...];
+  const { next, prev, CarouselWrapper, ref, isEnd, isStart } = useCarousel(
+    images.length
+  );
+
+  return (
+    <div>
+      <button onClick={prev} disabled={isStart}>&lt;</button>
+      <CarouselWrapper
+        ref={ref}
+        style={{
+          width: 800,
+          height: 600,
+        }}
+      >
+        {images.map((image) => (
+          <div
+            style={{
+              width: '100%',
+              backgroundColor: 'black',
+            }}
+          >
+            <img
+              src={image}
+              style={{
+                objectFit: 'contain',
+                width: '100%',
+                height: '100%',
+              }}
+            />
+          </div>
+        ))}
+      </CarouselWrapper>
+      <button onClick={next} disabled={isEnd}>&gt;</button>
+    </div>
+  );
+}
+```
+
 <Canvas of={CarouselStories.defaultStory} />
