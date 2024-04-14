@@ -100,23 +100,33 @@ you can get current index in carousel children.
 
 ### useCarousel
 
-useCarousel returns `CarouselWrapper`, `next`, `prev`, `index`, `style`, `ref`
+#### parameters
+
+`dataLength`, `options`
+
+`options`: let you adjust the option of the carousel.
+
+`startIndex` : specifies the start index.
+
+`infinity` : When the carousel is over, decide whether to return for the first time.
+
+#### return values
+
+useCarousel returns `CarouselWrapper`, `next`, `prev`, `index`, `ref`, `isEnd`, `isStart`
 
 `CarouselWrapper`: renders children elements. It already contains `display:flex` property.
+
+`ref`: you have to assign ref to Carousel Wrapper
 
 `next`: increase index
 
 `prev`: decrease index
 
-`ref`: you have to assign ref to Carousel Wrapper
-
-`style`: you have to assign style to Carousel Wrapper
-
 ```tsx
 const SomeComponent = () => {
-  const { CarouselWrapper, ref, style } = useCarousel();
+  const { CarouselWrapper, ref } = useCarousel();
   return (
-    <CarouselWrapper ref={ref} style={style}>
+    <CarouselWrapper ref={ref}>
       {data.map((eachData) => (
         <div>
           <img src={eachData.img} />
