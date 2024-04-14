@@ -1,0 +1,27 @@
+name: storybook-deployment
+
+on:
+  pull_request:
+    branches: ['main']
+  push:
+    branches: ['main']
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: ✅ 코드 체크아웃
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: ⬇️ 의존성 설치
+        run: npm install --ignore-scripts
+
+      - name: 🚀 storybook 배포
+        uses: chromaui/action@latest
+        with:
+          workingDir: apps/storybook
+          projectToken: ${{ secrets.STORYBOOK_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
