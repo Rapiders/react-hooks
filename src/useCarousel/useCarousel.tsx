@@ -12,7 +12,7 @@ import React, {
 
 const CarouselWrapper = forwardRef(
   (
-    { children, style }: { children: ReactNode; style: React.CSSProperties },
+    { children, style }: { children: ReactNode; style?: React.CSSProperties },
     ref: ForwardedRef<HTMLDivElement>
   ) => (
     <div style={{ overflow: 'hidden' }}>
