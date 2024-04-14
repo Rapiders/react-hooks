@@ -22,6 +22,5 @@ jobs:
       - name: 🚀 storybook 배포
         uses: chromaui/action@latest
         with:
-          workingDir: apps/storybook
           projectToken: ${{ secrets.STORYBOOK_TOKEN }}
           token: ${{ secrets.GITHUB_TOKEN }}
