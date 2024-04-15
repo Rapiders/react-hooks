@@ -1,26 +1,31 @@
-name: storybook-deployment
+# Workflow name
+name: 🚀 Storybook 배포
 
 on:
-  pull_request:
-    branches: ['main']
   push:
-    branches: ['main']
+    branches:
+      - 'main'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: ✅ 코드 체크아웃
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v3
 
-      - name: ⬇️ 의존성 설치
-        run: npm install --ignore-scripts
-
-      - name: 🚀 storybook 배포
-        uses: chromaui/action@latest
+      - uses: actions/setup-node@v3
         with:
-          projectToken: ${{ secrets.STORYBOOK_TOKEN }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          node-version: '20'
+
+      - name: 🚀 Storybook 배포
+        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.1
+        with:
+          install_command: npm ci
+          build_command: npm run build-storybook
+          path: storybook-static
+          checkout: false
