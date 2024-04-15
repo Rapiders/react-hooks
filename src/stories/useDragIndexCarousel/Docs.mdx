@@ -1,0 +1,12 @@
+import { Canvas, Meta, Description } from '@storybook/blocks';
+import * as DragCarouselStories from './DragCarousel.stories';
+
+<Meta of={DragCarouselStories} />
+
+# useDragCarousel
+
+useDragCarousel에서 반환된 컴포넌트를 통해 간편하게 Drag가능한 index기반의 Carousel을 구현합니다.
+
+모바일, PC 환경 모두 지원합니다.
+
+<Canvas of={DragCarouselStories.defaultStory} />
