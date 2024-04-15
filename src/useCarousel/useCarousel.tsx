@@ -12,10 +12,14 @@ import React, {
 
 const CarouselWrapper = forwardRef(
   (
-    { children, style }: { children: ReactNode; style?: React.CSSProperties },
+    {
+      children,
+      style,
+      className,
+    }: { children: ReactNode; style?: React.CSSProperties; className?: string },
     ref: ForwardedRef<HTMLDivElement>
   ) => (
-    <div style={{ overflow: 'hidden', ...style }}>
+    <div style={{ overflow: 'hidden', ...style }} className={className}>
       <div ref={ref} style={{ height: '100%', width: '100%' }}>
         {Children.map(children, (child: ReactElement) =>
           cloneElement(child, {
