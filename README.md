@@ -2,7 +2,7 @@
 
 It is a package that collects hooks that are often used for quick development.
 
-[Korean Docs](https://661bf03ed6b6100b4df995cb-bontjcockp.chromatic.com/)
+[Korean Docs](https://rapiders.github.io/react-hooks/)
 
 **Warning**
 Test code is not fully prepared yet. Please note.
