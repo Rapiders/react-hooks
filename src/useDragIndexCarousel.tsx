@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties, ReactElement, cloneElement } from 'react';
 import { useRef, useState, Children, ReactNode } from 'react';
 import { createContext, useContext } from 'react';
 
@@ -84,17 +84,21 @@ function _useDragIndexCarousel(
 function DragIndexCarousel({
   startIndex,
   minMove,
+  style,
+  className,
   children,
 }: {
   startIndex: number;
   minMove?: number;
+  style?: CSSProperties;
+  className?: string;
   children: ReactNode;
 }) {
   const pageLimit = Children.count(children) - 1;
   const {
     index,
     ref,
-    style,
+    style: dragStyle,
     handleTouchStart,
     handleTouchMove,
     handleMoveEnd,
@@ -106,18 +110,21 @@ function DragIndexCarousel({
     <div
       style={{
         overflow: 'hidden',
+        ...style,
       }}
+      className={className}
       draggable={false}
     >
       <div
         ref={ref}
-        style={style}
+        style={{ ...dragStyle, height: '100%', width: '100%' }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleMoveEnd}
         onMouseDown={handleScrollStart}
         onMouseMove={handleScrollMove}
         onMouseUp={handleMoveEnd}
+        onMouseLeave={handleMoveEnd}
       >
         <CarouselIndex.Provider value={index}>
           {children}
@@ -128,10 +135,28 @@ function DragIndexCarousel({
 }
 
 export default function useDragIndexCarousel(startIndex = 0, minMove = 60) {
-  const component = ({ children }: { children: ReactNode }) => {
+  const component = ({
+    children,
+    className,
+    style,
+  }: {
+    children: ReactNode;
+    style?: CSSProperties;
+    className?: string;
+  }) => {
     return (
-      <DragIndexCarousel startIndex={startIndex} minMove={minMove}>
-        {children}
+      <DragIndexCarousel
+        startIndex={startIndex}
+        minMove={minMove}
+        style={style}
+        className={className}
+      >
+        {Children.map(children, (child: ReactElement) =>
+          cloneElement(child, {
+            style: { ...child.props.style, flexShrink: 0 },
+            draggable: false,
+          })
+        )}
       </DragIndexCarousel>
     );
   };
