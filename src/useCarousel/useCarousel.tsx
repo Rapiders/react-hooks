@@ -15,8 +15,8 @@ const CarouselWrapper = forwardRef(
     { children, style }: { children: ReactNode; style?: React.CSSProperties },
     ref: ForwardedRef<HTMLDivElement>
   ) => (
-    <div style={{ overflow: 'hidden' }}>
-      <div ref={ref} style={{ ...style }}>
+    <div style={{ overflow: 'hidden', ...style }}>
+      <div ref={ref} style={{ height: '100%', width: '100%' }}>
         {Children.map(children, (child: ReactElement) =>
           cloneElement(child, {
             style: { ...child.props.style, flexShrink: 0 },

@@ -34,6 +34,7 @@ export default function Carousel() {
           <div
             style={{
               width: '100%',
+              height: '100%',
               backgroundColor: 'black',
             }}
           >
