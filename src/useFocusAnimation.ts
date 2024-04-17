@@ -3,7 +3,8 @@ import { useCallback, useEffect, useRef } from 'react';
 export default function useFocusAnimation<T extends HTMLElement>(
   onFocusClassName: string,
   onFocusOutClassName?: string,
-  threshold?: number
+  threshold?: number,
+  rootMargin?: string
 ) {
   const elementRef = useRef<T>(null);
 
@@ -27,6 +28,7 @@ export default function useFocusAnimation<T extends HTMLElement>(
     if (current) {
       observer = new IntersectionObserver(handleScroll, {
         threshold: threshold || 0.1,
+        rootMargin: rootMargin || '0px 0px 0px 0px',
       });
       observer.observe(current);
 
