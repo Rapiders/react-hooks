@@ -1,0 +1,25 @@
+import { Canvas, Meta, Description } from '@storybook/blocks';
+import * as FocusAnimation from './FocusAnimation.stories';
+
+<Meta of={FocusAnimation} />
+
+# useFocusAnimation
+
+요소가 화면에 보였을때 적용될 애니메이션 className을 선언적으로 관리해줍니다.
+Intersection Observer API를 사용하여 성능문제를 발생시키지 않습니다.
+
+## 함수인자
+
+useFocusAnimation(onFocusClassName,onFocusOutClassName, threshold, rootMargin)
+
+`onFocusClassName` : 요소가 화면에 보였을때 적용할 className입니다.
+
+`onFocusOutClassName` : 요소가 화면에 나갔을때 적용할 className입니다.
+
+`threshold` : 요소가 화면에 보일때의 기준을 결정합니다. 1이면 전체요소가 모두 화면에 들어왔을때 입니다.
+
+`rootMargin` : 화면의 너비, 높이를 조정할 수 있습니다. "top right bottom left" 형태로 기재하며 반드시 `단위`를 명시해야합니다.
+
+threshold와 rootMargin은 [Intersection Observer의 인터페이스](https://developer.mozilla.org/ko/docs/Web/API/Intersection_Observer_API#%EA%B5%90%EC%B0%A8_%EB%A3%A8%ED%8A%B8%EC%99%80_%EB%A3%A8%ED%8A%B8_%EC%97%AC%EB%B0%B1)와 동일합니다.
+
+<Canvas of={FocusAnimation.defaultStory} />
