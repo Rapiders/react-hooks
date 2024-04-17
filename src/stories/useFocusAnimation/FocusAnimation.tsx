@@ -7,7 +7,7 @@ export default function FocusAnimation() {
     'show',
     'hide',
     0.1,
-    '0px 0px -20% 0px'
+    '0px 0px 0px 0px'
   );
   const coralRef = useFocusAnimation<HTMLDivElement>(
     'left',
