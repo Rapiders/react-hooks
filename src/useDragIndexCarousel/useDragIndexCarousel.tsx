@@ -12,7 +12,7 @@ export const useDragCarouselIndex = () => {
   );
 };
 
-function _useDragIndexCarousel(
+export function _useDragIndexCarousel(
   pageLimit: number,
   minMove = 60,
   startIndex = 0
