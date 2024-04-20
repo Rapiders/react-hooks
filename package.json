@@ -4,11 +4,17 @@
   "description": "react hooks for fast development",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.cjs",
+      "import": "./dist/esm/index.js"
+    }
+  },
   "homepage": "https://github.com/rapiders/react-hooks",
   "scripts": {
     "test": "jest",
     "prepare": "npm run build",
-    "build": "rm -rf ./dist && tsc",
+    "build": "sh build.sh",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
