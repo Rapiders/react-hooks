@@ -2,6 +2,8 @@ node_modules/
 src
 .gitignore
 tsconfig.json
+tsconfig.cjs.json
+build.sh
 .git
 .storybook
 jest.config.ts 

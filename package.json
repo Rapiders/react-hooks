@@ -1,6 +1,6 @@
 {
   "name": "@rapiders/react-hooks",
-  "version": "0.0.15",
+  "version": "0.0.17",
   "description": "react hooks for fast development",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -52,5 +52,6 @@
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.4.4"
-  }
+  },
+  "type": "module"
 }
