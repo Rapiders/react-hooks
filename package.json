@@ -1,6 +1,6 @@
 {
   "name": "@rapiders/react-hooks",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "react hooks for fast development",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

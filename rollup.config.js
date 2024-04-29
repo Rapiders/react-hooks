@@ -22,8 +22,32 @@ export default [
     ],
   },
   {
-    input: './dist/dts/index.d.ts',
+    input: './src/index.ts',
     output: [{ file: 'dist/esm/index.d.ts', format: 'es' }],
+    plugins: [dts()],
+  },
+  {
+    input: './src/index.ts',
+    output: {
+      file: './dist/cjs/index.cjs',
+      format: 'cjs',
+    },
+    plugins: [
+      babel({
+        babelHelpers: 'bundled',
+        presets: [
+          '@babel/preset-env',
+          '@babel/preset-react',
+          '@babel/preset-typescript',
+        ],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      }),
+      typescript(),
+    ],
+  },
+  {
+    input: './src/index.ts',
+    output: [{ file: 'dist/cjs/index.d.cts', format: 'cjs' }],
     plugins: [dts()],
   },
 ];
