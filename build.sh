@@ -1,6 +1,5 @@
 rm -rf ./dist 
 mkdir dist 
-tsc --project tsconfig.cjs.json 
-tsc --project tsconfig.json
-find dist/cjs -name "index.js" -exec bash -c 'mv "$0" "${0%.js}.cjs"' {} \;
+rollup src/index.ts --config rollup.config.cjs.js
+rollup src/index.ts --config rollup.config.js
 
