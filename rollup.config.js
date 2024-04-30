@@ -1,6 +1,8 @@
 import babel from '@rollup/plugin-babel';
-import typescript from '@rollup/plugin-typescript';
 import { dts } from 'rollup-plugin-dts';
+import resolve from '@rollup/plugin-node-resolve';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 export default [
   {
     input: './src/index.ts',
@@ -9,6 +11,7 @@ export default [
       format: 'es',
     },
     plugins: [
+      peerDepsExternal(),
       babel({
         babelHelpers: 'bundled',
         presets: [
@@ -16,9 +19,11 @@ export default [
           '@babel/preset-react',
           '@babel/preset-typescript',
         ],
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions,
       }),
-      typescript({ tsconfig: './tsconfig.json' }),
+      resolve({
+        extensions,
+      }),
     ],
   },
   {
@@ -33,6 +38,7 @@ export default [
       format: 'cjs',
     },
     plugins: [
+      peerDepsExternal(),
       babel({
         babelHelpers: 'bundled',
         presets: [
@@ -40,9 +46,11 @@ export default [
           '@babel/preset-react',
           '@babel/preset-typescript',
         ],
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions,
       }),
-      typescript(),
+      resolve({
+        extensions,
+      }),
     ],
   },
   {
