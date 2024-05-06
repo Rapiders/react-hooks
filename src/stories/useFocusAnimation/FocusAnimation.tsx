@@ -1,4 +1,4 @@
-import useFocusAnimation from '../../useFocusAnimation';
+import useFocusAnimation from '../../useFocusAnimation/useFocusAnimation';
 import React from 'react';
 import './focusAnimation.css';
 
