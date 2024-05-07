@@ -1,20 +1,13 @@
 {
   "name": "@rapiders/react-hooks",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "react hooks for fast development",
   "main": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
   "exports": {
-    ".": {
-      "require": {
-        "default": "./dist/cjs/index.cjs",
-        "types": "./dist/cjs/index.d.cts"
-      },
-      "import": {
-        "default": "./dist/esm/index.js",
-        "types": "./dist/esm/index.d.ts"
-      }
-    }
+    "require": "./dist/cjs/index.cjs",
+    "import": "./dist/esm/index.js",
+    "types": "./dist/esm/index.d.ts"
   },
   "homepage": "https://github.com/rapiders/react-hooks",
   "scripts": {
