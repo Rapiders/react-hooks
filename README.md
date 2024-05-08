@@ -91,12 +91,25 @@ you can set `startIndex` and `minMove`.
 
 `minMove` : Minimum movement required for the index to shift.
 
-### useDragCarouselIndex
+#### parameters
 
-This hook should be called within the carousel provider provided by the useDragIndexCarousel component.
-carousel provider renders children elements. It already has the `display: flex` property included.
+`dataLength`, `startIndex`, `minMove`
 
-you can get current index in carousel children.
+`startIndex` : specifies the start index.
+
+`minMove`: determines how many slides you have to slide over.
+
+#### return values
+
+useDragCarousel returns `CarouselWrapper`, `next`, `prev`, `index`, `ref`, `isEnd`, `isStart`
+
+`CarouselWrapper`: renders children elements. It already contains `display:flex` property.
+
+`ref`: you need to assign a ref to the Carousel Wrapper.
+
+`next`: increase index
+
+`prev`: decrease index
 
 ### useCarousel
 

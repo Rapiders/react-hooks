@@ -8,9 +8,10 @@ export default function DragCarousel() {
     'https://image.xportsnews.com/contents/images/upload/article/2023/0825/mb_1692925582785123.jpg',
     'https://photo.newsen.com/news_photo/2022/08/19/202208190935355510_1.jpg',
   ];
-  const DragCarousel = useDragIndexCarousel();
+  const { CarouselWrapper, ref } = useDragIndexCarousel(images.length);
   return (
-    <DragCarousel
+    <CarouselWrapper
+      ref={ref}
       style={{
         width: 500,
         height: 500,
@@ -38,6 +39,6 @@ export default function DragCarousel() {
           />
         </div>
       ))}
-    </DragCarousel>
+    </CarouselWrapper>
   );
 }
