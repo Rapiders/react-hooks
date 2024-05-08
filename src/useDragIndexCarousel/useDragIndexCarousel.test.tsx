@@ -1,12 +1,26 @@
 import { renderHook, act } from '@testing-library/react';
+import useDragIndexCarousel from './useDragIndexCarousel';
 import { _useDragIndexCarousel } from './useDragIndexCarousel';
 
-describe('_useDragIndexCarousel', () => {
+describe('useDragIndexCarousel', () => {
   it('초기 상태 테스트 index로 시작할 수 있다.', () => {
     const { result } = renderHook(() => _useDragIndexCarousel(3));
 
     expect(result.current.index).toBe(0);
-    expect(result.current.style.transform).toBe('translateX(0px)');
+  });
+
+  it('index를 next, prev로 조작할 수 있다.', () => {
+    const { result } = renderHook(() => _useDragIndexCarousel(2));
+
+    expect(result.current.index).toBe(0);
+    act(() => result.current.next());
+    expect(result.current.index).toBe(1);
+    act(() => result.current.prev());
+    expect(result.current.index).toBe(0);
+    expect(result.current.isStart).toBe(true);
+    act(() => result.current.next());
+    act(() => result.current.next());
+    expect(result.current.isEnd).toBe(true);
   });
 
   it('모바일 터치이벤트 테스트: 절대값으로 minMove보다 많이, 오른쪽으로 슬라이드하면 index를 증가시킬 수 있다.', () => {

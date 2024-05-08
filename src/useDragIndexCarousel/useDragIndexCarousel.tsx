@@ -1,16 +1,12 @@
-import React, { CSSProperties, ReactElement, cloneElement } from 'react';
+import React, {
+  CSSProperties,
+  ForwardedRef,
+  ReactElement,
+  cloneElement,
+  forwardRef,
+  useEffect,
+} from 'react';
 import { useRef, useState, Children, ReactNode } from 'react';
-import { createContext, useContext } from 'react';
-
-export const CarouselIndex = createContext<number | null>(null);
-
-export const useDragCarouselIndex = () => {
-  const result = useContext(CarouselIndex);
-  if (result) return result;
-  throw new Error(
-    'Check the provider: You have to use CarouselIndex in IndexCarouselProvider children'
-  );
-};
 
 export function _useDragIndexCarousel(
   pageLimit: number,
@@ -62,104 +58,105 @@ export function _useDragIndexCarousel(
     setTouchStartX(0);
   };
 
-  const style = {
-    display: 'flex',
-    transform: `translateX(${-index * getSliderWidth() + transX}px)`,
-    transitionDuration: '300ms',
-    transitionTimingFunction: 'ease-out',
+  const getNext = (index: number) => {
+    if (index < pageLimit) return index + 1;
+    return index;
   };
+
+  const getPrev = (index: number) => {
+    if (index > 0) return index - 1;
+    return index;
+  };
+
+  const next = () => setIndex((prev) => getNext(prev));
+  const prev = () => setIndex((prev) => getPrev(prev));
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.style.display = 'flex';
+      ref.current.style.transform = `translateX(${-index * getSliderWidth() + transX}px)`;
+      ref.current.style.transitionDuration = '300ms';
+      ref.current.style.transitionTimingFunction = 'ease-out';
+    }
+  }, [transX]);
 
   return {
-    style,
     ref,
+    isEnd: index === pageLimit,
+    isStart: index === 0,
     handleTouchStart,
     handleTouchMove,
     handleMoveEnd,
     handleScrollStart,
     handleScrollMove,
+    next,
+    prev,
     index,
   };
 }
 
-function DragIndexCarousel({
-  startIndex,
-  minMove,
-  style,
-  className,
-  children,
-}: {
-  startIndex: number;
-  minMove?: number;
-  style?: CSSProperties;
-  className?: string;
-  children: ReactNode;
-}) {
-  const pageLimit = Children.count(children) - 1;
-  const {
-    index,
-    ref,
-    style: dragStyle,
-    handleTouchStart,
-    handleTouchMove,
-    handleMoveEnd,
-    handleScrollStart,
-    handleScrollMove,
-  } = _useDragIndexCarousel(pageLimit, minMove, startIndex);
-
-  return (
-    <div
-      style={{
-        overflow: 'hidden',
-        ...style,
-      }}
-      className={className}
-      draggable={false}
-    >
-      <div
-        ref={ref}
-        style={{ ...dragStyle, height: '100%', width: '100%' }}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleMoveEnd}
-        onMouseDown={handleScrollStart}
-        onMouseMove={handleScrollMove}
-        onMouseUp={handleMoveEnd}
-        onMouseLeave={handleMoveEnd}
-      >
-        <CarouselIndex.Provider value={index}>
-          {children}
-        </CarouselIndex.Provider>
-      </div>
-    </div>
-  );
-}
-
-export default function useDragIndexCarousel(startIndex = 0, minMove = 60) {
-  const component = ({
-    children,
-    className,
-    style,
-  }: {
-    children: ReactNode;
-    style?: CSSProperties;
-    className?: string;
-  }) => {
-    return (
-      <DragIndexCarousel
-        startIndex={startIndex}
-        minMove={minMove}
-        style={style}
-        className={className}
-      >
+const CarouselWrapper = forwardRef(
+  (
+    {
+      children,
+      style,
+      className,
+    }: { children: ReactNode; style?: React.CSSProperties; className?: string },
+    ref: ForwardedRef<HTMLDivElement>
+  ) => (
+    <div style={{ overflow: 'hidden', ...style }} className={className}>
+      <div ref={ref} style={{ height: '100%', width: '100%' }}>
         {Children.map(children, (child: ReactElement) =>
           cloneElement(child, {
             style: { ...child.props.style, flexShrink: 0 },
-            draggable: false,
           })
         )}
-      </DragIndexCarousel>
-    );
-  };
+      </div>
+    </div>
+  )
+);
 
-  return component;
+export default function useDragIndexCarousel(
+  dataLength: number,
+  startIndex = 0,
+  minMove = 60
+) {
+  const {
+    index,
+    ref,
+    handleTouchStart,
+    handleTouchMove,
+    handleMoveEnd,
+    handleScrollStart,
+    handleScrollMove,
+    next,
+    prev,
+    isEnd,
+    isStart,
+  } = _useDragIndexCarousel(dataLength - 1, minMove, startIndex);
+
+  useEffect(() => {
+    if (ref.current) {
+      ref.current.addEventListener('touchstart', handleTouchStart as any);
+      ref.current.addEventListener('touchmove', handleTouchMove as any);
+      ref.current.addEventListener('touchend', handleMoveEnd as any);
+      ref.current.addEventListener('mousedown', handleScrollStart as any);
+      ref.current.addEventListener('mouseleave', handleMoveEnd as any);
+      ref.current.addEventListener('mousemove', handleScrollMove as any);
+      ref.current.addEventListener('mouseup', handleMoveEnd as any);
+    }
+    return () => {
+      if (ref.current) {
+        ref.current.removeEventListener('touchstart', handleTouchStart as any);
+        ref.current.removeEventListener('touchmove', handleTouchMove as any);
+        ref.current.removeEventListener('touchend', handleMoveEnd as any);
+        ref.current.removeEventListener('mousedown', handleScrollStart as any);
+        ref.current.removeEventListener('mouseleave', handleMoveEnd as any);
+        ref.current.removeEventListener('mousemove', handleScrollMove as any);
+        ref.current.removeEventListener('mouseup', handleMoveEnd as any);
+      }
+    };
+  });
+
+  return { CarouselWrapper, index, ref, next, prev, isStart, isEnd };
 }
