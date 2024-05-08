@@ -59,7 +59,7 @@ export function _useDragIndexCarousel(
   };
 
   const getNext = (index: number) => {
-    if (index < pageLimit - 1) return index + 1;
+    if (index < pageLimit) return index + 1;
     return index;
   };
 
