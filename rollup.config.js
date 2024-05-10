@@ -2,6 +2,8 @@ import babel from '@rollup/plugin-babel';
 import { dts } from 'rollup-plugin-dts';
 import resolve from '@rollup/plugin-node-resolve';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import terser from '@rollup/plugin-terser';
+
 const extensions = ['.js', '.jsx', '.ts', '.tsx'];
 export default [
   {
@@ -24,6 +26,7 @@ export default [
       resolve({
         extensions,
       }),
+      terser(),
     ],
   },
   {
