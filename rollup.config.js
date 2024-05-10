@@ -54,6 +54,7 @@ export default [
       resolve({
         extensions,
       }),
+      terser(),
     ],
   },
   {
