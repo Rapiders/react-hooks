@@ -13,6 +13,8 @@ Test code is not fully prepared yet. Please note.
 npm install @rapiders/react-hooks
 ```
 
+## Hooks
+
 ### useInput
 
 simple hook to change input components(uncontroll component) to controll component
@@ -25,6 +27,16 @@ simple hook to change input components(uncontroll component) to controll compone
         <input value={value} onChange={onChange}/>
         <button onClick={reset}>RESET</button>
     </div>
+```
+
+### useInterval
+
+simple hook to setInterval with React Component
+
+```tsx
+...
+const callback = () => {};
+const { continueTimer, stop } = useInterval(callback, 1000); //1000ms
 ```
 
 ## Animation

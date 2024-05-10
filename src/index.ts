@@ -4,6 +4,7 @@ import useFocusAnimation from './useFocusAnimation/useFocusAnimation';
 import useDragIndexCarousel from './useDragIndexCarousel/useDragIndexCarousel';
 import useCarousel from './useCarousel/useCarousel';
 import useScrollRatio from './useScrollRatio';
+import useInterval from './useInterval/useInterval';
 
 export {
   useInput,
@@ -12,4 +13,5 @@ export {
   useDragIndexCarousel,
   useCarousel,
   useScrollRatio,
+  useInterval,
 };
