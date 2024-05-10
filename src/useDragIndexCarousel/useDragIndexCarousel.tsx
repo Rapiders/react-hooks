@@ -1,12 +1,14 @@
 import React, {
-  CSSProperties,
   ForwardedRef,
   ReactElement,
   cloneElement,
   forwardRef,
   useEffect,
+  useRef,
+  useState,
+  Children,
+  ReactNode,
 } from 'react';
-import { useRef, useState, Children, ReactNode } from 'react';
 
 interface useDragIndexCarouselOptions {
   minMove?: number;
@@ -26,20 +28,20 @@ export function _useDragIndexCarousel(
   const [index, setIndex] = useState(startIndex);
   const ref = useRef<HTMLDivElement>(null);
 
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+  const handleTouchStart = (e: TouchEvent) => {
     setTouchStartX(e.touches[0].clientX);
   };
-  const handleScrollStart = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleScrollStart = (e: MouseEvent) => {
     setMouseDown(true);
     setTouchStartX(e.pageX);
   };
 
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+  const handleTouchMove = (e: TouchEvent) => {
     const moveWidth = e.touches[0].clientX - touchStartX;
     setTransX(moveWidth);
   };
 
-  const handleScrollMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleScrollMove = (e: MouseEvent) => {
     if (isMouseDown) {
       const moveWidth = e.pageX - touchStartX;
       setTransX(moveWidth);
@@ -78,10 +80,10 @@ export function _useDragIndexCarousel(
   const reconcileIndex = () => {
     const resetToFirstPage = () => {
       if (ref.current) {
-        ref.current!.style.transition = 'none';
-        ref.current!.style.transform = `translateX(${-getSliderWidth()}px)`;
+        ref.current.style.transition = 'none';
+        ref.current.style.transform = `translateX(${-getSliderWidth()}px)`;
         setIndex(1);
-        ref.current!.removeEventListener('transitionend', resetToFirstPage);
+        ref.current.removeEventListener('transitionend', resetToFirstPage);
       }
     };
     const resetToLastPage = () => {
@@ -187,13 +189,13 @@ export default function useDragIndexCarousel(
 
   useEffect(() => {
     if (ref.current) {
-      ref.current.addEventListener('touchstart', handleTouchStart as any);
-      ref.current.addEventListener('touchmove', handleTouchMove as any);
-      ref.current.addEventListener('touchend', handleMoveEnd as any);
-      ref.current.addEventListener('mousedown', handleScrollStart as any);
-      ref.current.addEventListener('mouseleave', handleMoveEnd as any);
-      ref.current.addEventListener('mousemove', handleScrollMove as any);
-      ref.current.addEventListener('mouseup', handleMoveEnd as any);
+      ref.current.addEventListener('touchstart', handleTouchStart);
+      ref.current.addEventListener('touchmove', handleTouchMove);
+      ref.current.addEventListener('touchend', handleMoveEnd);
+      ref.current.addEventListener('mousedown', handleScrollStart);
+      ref.current.addEventListener('mouseleave', handleMoveEnd);
+      ref.current.addEventListener('mousemove', handleScrollMove);
+      ref.current.addEventListener('mouseup', handleMoveEnd);
     }
     return () => {
       if (ref.current) {
