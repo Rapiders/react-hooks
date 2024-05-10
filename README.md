@@ -13,6 +13,8 @@ Test code is not fully prepared yet. Please note.
 npm install @rapiders/react-hooks
 ```
 
+## Hooks
+
 ### useInput
 
 simple hook to change input components(uncontroll component) to controll component
@@ -25,6 +27,16 @@ simple hook to change input components(uncontroll component) to controll compone
         <input value={value} onChange={onChange}/>
         <button onClick={reset}>RESET</button>
     </div>
+```
+
+### useInterval
+
+simple hook to setInterval with React Component
+
+```tsx
+...
+const callback = () => {};
+const { continueTimer, stop } = useInterval(callback, 1000); //1000ms
 ```
 
 ## Animation
@@ -87,27 +99,29 @@ You have to register ref to animation HTMLElement.
 
 With "useDragIndexCarousel," you can easily implement a dragable Index Carousel.
 
-you can set `startIndex` and `minMove`.
-
-`minMove` : Minimum movement required for the index to shift.
-
 #### parameters
 
-`dataLength`, `startIndex`, `minMove`
+`dataLength`, `options`
+
+`options`: let you adjust the option of the carousel.
 
 `startIndex` : specifies the start index.
+
+`infinity` : Specifies whether to loop back to the beginning when the carousel reaches the end.
 
 `minMove`: determines how many slides you have to slide over.
 
 #### return values
 
-useDragCarousel returns `CarouselWrapper`, `next`, `prev`, `index`, `ref`, `isEnd`, `isStart`
+useDragCarousel returns `isDragging`, `CarouselWrapper`, `next`, `prev`, `index`, `ref`, `isEnd`, `isStart`
+
+`isDragging`: Indicates whether the element is being dragged or not.
 
 `CarouselWrapper`: renders children elements. It already contains `display:flex` property.
 
 `ref`: you need to assign a ref to the Carousel Wrapper.
 
-`next`: increase index
+`next`: increase index.
 
 `prev`: decrease index
 
