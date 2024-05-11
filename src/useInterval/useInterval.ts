@@ -10,6 +10,7 @@ export default function useInterval(callback: () => void, delay: number) {
   useEffect(() => {
     savedCallback.current = callback;
   }, [callback]);
+
   useEffect(() => {
     const tick = () => {
       if (timer) savedCallback.current();
@@ -18,5 +19,5 @@ export default function useInterval(callback: () => void, delay: number) {
     return () => clearInterval(timerId);
   }, [delay, timer]);
 
-  return { stop, continueTimer };
+  return { intervalRunning: timer, stop, continueTimer };
 }
