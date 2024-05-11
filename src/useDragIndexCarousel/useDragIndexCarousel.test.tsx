@@ -1,5 +1,4 @@
 import { renderHook, act } from '@testing-library/react';
-import useDragIndexCarousel from './useDragIndexCarousel';
 import { _useDragIndexCarousel } from './useDragIndexCarousel';
 
 describe('useDragIndexCarousel', () => {
@@ -29,14 +28,10 @@ describe('useDragIndexCarousel', () => {
     const touchMove = { touches: [{ clientX: -100 }] };
 
     act(() =>
-      result.current.handleTouchStart(
-        touchEvent as unknown as React.TouchEvent<HTMLDivElement>
-      )
+      result.current.handleTouchStart(touchEvent as unknown as TouchEvent)
     );
     act(() =>
-      result.current.handleTouchMove(
-        touchMove as unknown as React.TouchEvent<HTMLDivElement>
-      )
+      result.current.handleTouchMove(touchMove as unknown as TouchEvent)
     );
     act(() => result.current.handleMoveEnd());
 
@@ -49,14 +44,10 @@ describe('useDragIndexCarousel', () => {
     const touchMove = { touches: [{ clientX: 100 }] };
 
     act(() =>
-      result.current.handleTouchStart(
-        touchEvent as unknown as React.TouchEvent<HTMLDivElement>
-      )
+      result.current.handleTouchStart(touchEvent as unknown as TouchEvent)
     );
     act(() =>
-      result.current.handleTouchMove(
-        touchMove as unknown as React.TouchEvent<HTMLDivElement>
-      )
+      result.current.handleTouchMove(touchMove as unknown as TouchEvent)
     );
     act(() => result.current.handleMoveEnd());
 
@@ -69,14 +60,10 @@ describe('useDragIndexCarousel', () => {
     const touchMove = { touches: [{ clientX: -90 }] };
 
     act(() =>
-      result.current.handleTouchStart(
-        touchEvent as unknown as React.TouchEvent<HTMLDivElement>
-      )
+      result.current.handleTouchStart(touchEvent as unknown as TouchEvent)
     );
     act(() =>
-      result.current.handleTouchMove(
-        touchMove as unknown as React.TouchEvent<HTMLDivElement>
-      )
+      result.current.handleTouchMove(touchMove as unknown as TouchEvent)
     );
     act(() => result.current.handleMoveEnd());
 
@@ -88,16 +75,8 @@ describe('useDragIndexCarousel', () => {
     const touchEvent = { pageX: 0 };
     const touchMove = { pageX: -100 };
 
-    act(() =>
-      result.current.handleScrollStart(
-        touchEvent as unknown as React.MouseEvent<HTMLDivElement>
-      )
-    );
-    act(() =>
-      result.current.handleScrollMove(
-        touchMove as unknown as React.MouseEvent<HTMLDivElement>
-      )
-    );
+    act(() => result.current.handleScrollStart(touchEvent as MouseEvent));
+    act(() => result.current.handleScrollMove(touchMove as MouseEvent));
     act(() => result.current.handleMoveEnd());
 
     expect(result.current.index).toBe(1);
@@ -108,16 +87,8 @@ describe('useDragIndexCarousel', () => {
     const touchEvent = { pageX: 0 };
     const touchMove = { pageX: 100 };
 
-    act(() =>
-      result.current.handleScrollStart(
-        touchEvent as unknown as React.MouseEvent<HTMLDivElement>
-      )
-    );
-    act(() =>
-      result.current.handleScrollMove(
-        touchMove as unknown as React.MouseEvent<HTMLDivElement>
-      )
-    );
+    act(() => result.current.handleScrollStart(touchEvent as MouseEvent));
+    act(() => result.current.handleScrollMove(touchMove as MouseEvent));
     act(() => result.current.handleMoveEnd());
 
     expect(result.current.index).toBe(0);
@@ -128,16 +99,8 @@ describe('useDragIndexCarousel', () => {
     const touchEvent = { pageX: 0 };
     const touchMove = { pageX: 60 };
 
-    act(() =>
-      result.current.handleScrollStart(
-        touchEvent as unknown as React.MouseEvent<HTMLDivElement>
-      )
-    );
-    act(() =>
-      result.current.handleScrollMove(
-        touchMove as unknown as React.MouseEvent<HTMLDivElement>
-      )
-    );
+    act(() => result.current.handleScrollStart(touchEvent as MouseEvent));
+    act(() => result.current.handleScrollMove(touchMove as MouseEvent));
     act(() => result.current.handleMoveEnd());
 
     expect(result.current.index).toBe(1);
