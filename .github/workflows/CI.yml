@@ -17,6 +17,9 @@ jobs:
         with:
           node-version: '20.x'
 
+      - name: ⬇️ 패키지 설치
+        run: npm ci
+
       - name: 🔥 테스트
         run: npm test
 
