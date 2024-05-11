@@ -5,6 +5,7 @@ import useDragIndexCarousel from './useDragIndexCarousel/useDragIndexCarousel';
 import useCarousel from './useCarousel/useCarousel';
 import useScrollRatio from './useScrollRatio';
 import useInterval from './useInterval/useInterval';
+import useAfterMountEffect from './useAfterMountEffect/useAfterMountEffect';
 
 export {
   useInput,
@@ -14,4 +15,5 @@ export {
   useCarousel,
   useScrollRatio,
   useInterval,
+  useAfterMountEffect,
 };
