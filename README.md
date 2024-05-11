@@ -36,6 +36,18 @@ const callback = () => {};
 const { continueTimer, stop, intervalRunning } = useInterval(callback, 1000); //1000ms
 ```
 
+### useAfterMountEffect
+
+It can be used the same as `useEffect`, but unlike useEffect, callback does not run on the first mount.
+
+```tsx
+export default Component() {
+  useAfterMountEffect(() => {
+    // callback
+  }, [deps])
+}
+```
+
 ## Animation
 
 The animation of this package is based on ClassName by default.
