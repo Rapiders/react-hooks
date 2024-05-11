@@ -1,0 +1,25 @@
+import { Canvas, Meta, Description } from '@storybook/blocks';
+import * as Interval from './Interval.stories';
+
+<Meta of={Interval} />
+
+# useInterval
+
+리액트 컴포넌트 내부적으로 setInterval을 조정할 수 있도록 만든 훅입니다.
+최초 호출시 바로 interval이 수행됩니다.
+
+## 함수 인자
+
+`callback`: interval을 통해 주기적으로 실행시킬 함수입니다.
+
+`time` : interval을 수행시킬 주기 시간입니다. 단위는 ms입니다.
+
+## 반환값
+
+`intervalRunning` : 현재 interval의 실행상태입니다. 최초 훅 호출시 `true`입니다.
+
+`stop`: interval을 중지시킵니다.
+
+`continueTimer`: interval을 재개합니다.
+
+<Canvas of={Interval.defaultStory} />

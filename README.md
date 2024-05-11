@@ -4,9 +4,6 @@ It is a package that collects hooks that are often used for quick development.
 
 [Korean Docs](https://rapiders.github.io/react-hooks/)
 
-**Warning**
-Test code is not fully prepared yet. Please note.
-
 # Usage
 
 ```
@@ -36,7 +33,7 @@ simple hook to setInterval with React Component
 ```tsx
 ...
 const callback = () => {};
-const { continueTimer, stop } = useInterval(callback, 1000); //1000ms
+const { continueTimer, stop, intervalRunning } = useInterval(callback, 1000); //1000ms
 ```
 
 ## Animation
