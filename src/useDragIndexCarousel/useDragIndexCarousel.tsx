@@ -199,13 +199,13 @@ export default function useDragIndexCarousel(
     }
     return () => {
       if (ref.current) {
-        ref.current.removeEventListener('touchstart', handleTouchStart as any);
-        ref.current.removeEventListener('touchmove', handleTouchMove as any);
-        ref.current.removeEventListener('touchend', handleMoveEnd as any);
-        ref.current.removeEventListener('mousedown', handleScrollStart as any);
-        ref.current.removeEventListener('mouseleave', handleMoveEnd as any);
-        ref.current.removeEventListener('mousemove', handleScrollMove as any);
-        ref.current.removeEventListener('mouseup', handleMoveEnd as any);
+        ref.current.removeEventListener('touchstart', handleTouchStart);
+        ref.current.removeEventListener('touchmove', handleTouchMove);
+        ref.current.removeEventListener('touchend', handleMoveEnd);
+        ref.current.removeEventListener('mousedown', handleScrollStart);
+        ref.current.removeEventListener('mouseleave', handleMoveEnd);
+        ref.current.removeEventListener('mousemove', handleScrollMove);
+        ref.current.removeEventListener('mouseup', handleMoveEnd);
       }
     };
   });

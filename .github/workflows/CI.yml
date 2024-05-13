@@ -1,0 +1,29 @@
+name: ✅ CI
+
+on:
+  pull_request:
+    branches:
+      - 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ✅ 코드 체크 아웃
+        uses: actions/checkout@v3
+
+      - name: ✅ 노드 세팅
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+
+      - name: ⬇️ 패키지 설치
+        run: npm ci
+
+      - name: 🔥 테스트
+        run: npm test
+
+      - name: 🔨 빌드
+        run: |
+          npm ci
+          npm run build
