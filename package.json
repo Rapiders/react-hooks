@@ -12,13 +12,13 @@
   "homepage": "https://github.com/rapiders/react-hooks",
   "scripts": {
     "test": "jest",
-    "prepare": "npm run build",
+    "prepublish": "npm run build",
     "build": "sh build.sh",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "lint": "eslint ./src/**/*.{ts,tsx}",
     "format": "prettier --cache --write .",
-    "postinstall": "husky install"
+    "prepare": "husky install"
   },
   "keywords": [
     "react",
