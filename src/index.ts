@@ -7,13 +7,4 @@ import useScrollRatio from './useScrollRatio';
 import useInterval from './useInterval/useInterval';
 import useAfterMountEffect from './useAfterMountEffect/useAfterMountEffect';
 
-export {
-  useInput,
-  useAnimation,
-  useFocusAnimation,
-  useDragIndexCarousel,
-  useCarousel,
-  useScrollRatio,
-  useInterval,
-  useAfterMountEffect,
-};
+export { useInput, useAnimation, useFocusAnimation, useDragIndexCarousel, useCarousel, useScrollRatio, useInterval, useAfterMountEffect };

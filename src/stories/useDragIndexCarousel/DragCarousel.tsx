@@ -19,6 +19,7 @@ export default function DragCarousel() {
     >
       {images.map((image) => (
         <div
+          key={image}
           style={{
             width: '100%',
             backgroundColor: 'black',

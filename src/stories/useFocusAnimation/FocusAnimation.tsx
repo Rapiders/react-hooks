@@ -3,24 +3,9 @@ import React from 'react';
 import './focusAnimation.css';
 
 export default function FocusAnimation() {
-  const redRef = useFocusAnimation<HTMLDivElement>(
-    'show',
-    'hide',
-    0.1,
-    '0px 0px 0px 0px'
-  );
-  const coralRef = useFocusAnimation<HTMLDivElement>(
-    'left',
-    'right',
-    0.1,
-    '-30% 0px -30% 0px'
-  );
-  const skyRef = useFocusAnimation<HTMLDivElement>(
-    'show',
-    'hide',
-    0.1,
-    '-30% 0px -30% 0px'
-  );
+  const redRef = useFocusAnimation<HTMLDivElement>('show', 'hide', 0.1, '0px 0px 0px 0px');
+  const coralRef = useFocusAnimation<HTMLDivElement>('left', 'right', 0.1, '-30% 0px -30% 0px');
+  const skyRef = useFocusAnimation<HTMLDivElement>('show', 'hide', 0.1, '-30% 0px -30% 0px');
 
   return (
     <div

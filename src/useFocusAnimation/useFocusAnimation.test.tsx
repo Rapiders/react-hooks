@@ -11,17 +11,17 @@ const mockIntersectionObserver = class {
   entries: Entrie[];
   constructor(callback) {
     this.entries = [];
-    window.addEventListener('scroll', (e) => {
+    window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
         this.entries.map((entry) => {
-          entry.isIntersecting = this.isInViewPort(entry.target);
+          entry.isIntersecting = this.isInViewPort();
         });
       }
       callback(this.entries, this);
     });
   }
 
-  isInViewPort(target: Element) {
+  isInViewPort() {
     return true;
   }
 
@@ -40,6 +40,7 @@ const mockIntersectionObserver = class {
 
 describe('useFocusAnimation 기능 테스트', () => {
   beforeEach(() => {
+    // eslint-disable-next-line
     global.IntersectionObserver = mockIntersectionObserver as any;
   });
 

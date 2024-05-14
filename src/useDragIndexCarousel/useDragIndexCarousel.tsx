@@ -1,14 +1,4 @@
-import React, {
-  ForwardedRef,
-  ReactElement,
-  cloneElement,
-  forwardRef,
-  useEffect,
-  useRef,
-  useState,
-  Children,
-  ReactNode,
-} from 'react';
+import React, { ForwardedRef, ReactElement, cloneElement, forwardRef, useEffect, useRef, useState, Children, ReactNode } from 'react';
 
 interface useDragIndexCarouselOptions {
   minMove?: number;
@@ -16,12 +6,7 @@ interface useDragIndexCarouselOptions {
   infinity?: boolean;
 }
 
-export function _useDragIndexCarousel(
-  pageLimit: number,
-  minMove = 60,
-  startIndex = 0,
-  infinity = false
-) {
+export function _useDragIndexCarousel(pageLimit: number, minMove = 60, startIndex = 0, infinity = false) {
   const [isMouseDown, setMouseDown] = useState(false);
   const [touchStartX, setTouchStartX] = useState(0);
   const [transX, setTransX] = useState(0);
@@ -95,11 +80,9 @@ export function _useDragIndexCarousel(
       }
     };
 
-    if (index === pageLimit && ref.current)
-      ref.current.addEventListener('transitionend', resetToFirstPage);
+    if (index === pageLimit && ref.current) ref.current.addEventListener('transitionend', resetToFirstPage);
 
-    if (index === 0 && ref.current)
-      ref.current.addEventListener('transitionend', resetToLastPage);
+    if (index === 0 && ref.current) ref.current.addEventListener('transitionend', resetToLastPage);
   };
 
   // initialize index with infinity options
@@ -139,29 +122,22 @@ export function _useDragIndexCarousel(
 
 const CarouselWrapper = forwardRef(
   (
-    {
-      children,
-      style,
-      className,
-    }: { children: ReactNode; style?: React.CSSProperties; className?: string },
-    ref: ForwardedRef<HTMLDivElement>
+    { children, style, className }: { children: ReactNode; style?: React.CSSProperties; className?: string },
+    ref: ForwardedRef<HTMLDivElement>,
   ) => (
     <div style={{ overflow: 'hidden', ...style }} className={className}>
       <div ref={ref} style={{ height: '100%', width: '100%' }}>
         {Children.map(children, (child: ReactElement) =>
           cloneElement(child, {
             style: { ...child.props.style, flexShrink: 0 },
-          })
+          }),
         )}
       </div>
     </div>
-  )
+  ),
 );
 
-export default function useDragIndexCarousel(
-  dataLength: number,
-  options?: useDragIndexCarouselOptions
-) {
+export default function useDragIndexCarousel(dataLength: number, options?: useDragIndexCarouselOptions) {
   const getStartIndex = () => {
     if (!options) return 0;
     if (options.infinity) return (options.startIndex || 0) + 1;
@@ -216,10 +192,7 @@ export default function useDragIndexCarousel(
       if (ref.current.lastElementChild && ref.current.firstElementChild) {
         const lastElement = ref.current.lastElementChild;
         const firstElement = ref.current.firstElementChild;
-        ref.current.insertBefore(
-          lastElement.cloneNode(true),
-          ref.current.firstElementChild
-        );
+        ref.current.insertBefore(lastElement.cloneNode(true), ref.current.firstElementChild);
         ref.current.appendChild(firstElement.cloneNode(true));
       }
     }

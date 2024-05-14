@@ -1,34 +1,20 @@
-import React, {
-  Children,
-  ForwardedRef,
-  ReactElement,
-  ReactNode,
-  cloneElement,
-  forwardRef,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { Children, ForwardedRef, ReactElement, ReactNode, cloneElement, forwardRef, useEffect, useRef, useState } from 'react';
 
 const CarouselWrapper = forwardRef(
   (
-    {
-      children,
-      style,
-      className,
-    }: { children: ReactNode; style?: React.CSSProperties; className?: string },
-    ref: ForwardedRef<HTMLDivElement>
+    { children, style, className }: { children: ReactNode; style?: React.CSSProperties; className?: string },
+    ref: ForwardedRef<HTMLDivElement>,
   ) => (
     <div style={{ overflow: 'hidden', ...style }} className={className}>
       <div ref={ref} style={{ height: '100%', width: '100%' }}>
         {Children.map(children, (child: ReactElement) =>
           cloneElement(child, {
             style: { ...child.props.style, flexShrink: 0 },
-          })
+          }),
         )}
       </div>
     </div>
-  )
+  ),
 );
 
 interface useCarouselOptions {
@@ -36,10 +22,7 @@ interface useCarouselOptions {
   infinity?: boolean;
 }
 
-export default function useCarousel(
-  dataLength: number,
-  options?: useCarouselOptions
-) {
+export default function useCarousel(dataLength: number, options?: useCarouselOptions) {
   const ref = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(options?.startIndex || 0);
 

@@ -16,11 +16,7 @@ export default [
       peerDepsExternal(),
       babel({
         babelHelpers: 'bundled',
-        presets: [
-          '@babel/preset-env',
-          '@babel/preset-react',
-          '@babel/preset-typescript',
-        ],
+        presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
         extensions,
       }),
       resolve({
@@ -44,11 +40,7 @@ export default [
       peerDepsExternal(),
       babel({
         babelHelpers: 'bundled',
-        presets: [
-          '@babel/preset-env',
-          '@babel/preset-react',
-          '@babel/preset-typescript',
-        ],
+        presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
         extensions,
       }),
       resolve({

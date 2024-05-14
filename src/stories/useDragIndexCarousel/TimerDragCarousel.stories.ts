@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from '@storybook/react';
-import DragCarousel from './DragCarousel';
 import TimerDragCarousel from './TimerDragCarousel';
 
 const meta = {

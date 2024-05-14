@@ -1,13 +1,7 @@
 import React from 'react';
 import './animation.css';
 import useAnimation from '../../useAnimation/useAnimation';
-export const Animation = ({
-  mountClassName,
-  unmountClassName,
-}: {
-  mountClassName?: string;
-  unmountClassName?: string;
-}) => {
+export const Animation = ({ mountClassName, unmountClassName }: { mountClassName?: string; unmountClassName?: string }) => {
   const { show, hide, isShow, AnimationWrapper } = useAnimation({
     mountClassName,
     unmountClassName,
