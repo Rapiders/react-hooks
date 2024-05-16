@@ -10,12 +10,9 @@ export default function TimerDragCarousel() {
     'https://image.xportsnews.com/contents/images/upload/article/2023/0825/mb_1692925582785123.jpg',
     'https://cdn.entermedia.co.kr/news/photo/202210/30302_58507_3849.jpg',
   ];
-  const { CarouselWrapper, ref, next, isDragging } = useDragIndexCarousel(
-    images.length,
-    {
-      infinity: true,
-    }
-  );
+  const { CarouselWrapper, ref, next, isDragging } = useDragIndexCarousel(images.length, {
+    infinity: true,
+  });
   const { continueTimer, stop } = useInterval(next, 3000);
   useEffect(() => {
     if (isDragging) stop();
@@ -32,6 +29,7 @@ export default function TimerDragCarousel() {
     >
       {images.map((image) => (
         <div
+          key={image}
           style={{
             width: '100%',
             backgroundColor: 'black',

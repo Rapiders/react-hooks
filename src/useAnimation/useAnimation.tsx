@@ -1,13 +1,7 @@
 import React, { CSSProperties, ReactNode, useState } from 'react';
 
-export function _useAnimation(
-  mountAnimationClassName?: string,
-  unmountAnimationClassName?: string,
-  unmountCallback?: () => void
-) {
-  const [animationClassName, setAnimationClassName] = useState<
-    string | undefined
-  >(mountAnimationClassName);
+export function _useAnimation(mountAnimationClassName?: string, unmountAnimationClassName?: string, unmountCallback?: () => void) {
+  const [animationClassName, setAnimationClassName] = useState<string | undefined>(mountAnimationClassName);
 
   const triggerUnmountAnimation = () => {
     setAnimationClassName(unmountAnimationClassName);
@@ -28,37 +22,19 @@ export function _useAnimation(
   };
 }
 
-export default function useAnimation({
-  mountClassName,
-  unmountClassName,
-}: {
-  mountClassName?: string;
-  unmountClassName?: string;
-}) {
+export default function useAnimation({ mountClassName, unmountClassName }: { mountClassName?: string; unmountClassName?: string }) {
   const [isShow, setIsShow] = useState(false);
-  const {
-    triggerUnmountAnimation,
-    animationClassName,
-    handleUnmountAnimationEnd,
-  } = _useAnimation(mountClassName, unmountClassName, () => setIsShow(false));
+  const { triggerUnmountAnimation, animationClassName, handleUnmountAnimationEnd } = _useAnimation(mountClassName, unmountClassName, () =>
+    setIsShow(false),
+  );
 
   const show = () => setIsShow(true);
   const hide = () => triggerUnmountAnimation();
 
-  const AnimationWrapper = ({
-    children,
-    style,
-  }: {
-    children: ReactNode;
-    style?: CSSProperties;
-  }) => {
+  const AnimationWrapper = ({ children, style }: { children: ReactNode; style?: CSSProperties }) => {
     return (
       isShow && (
-        <div
-          className={animationClassName}
-          onAnimationEnd={handleUnmountAnimationEnd}
-          style={style}
-        >
+        <div className={animationClassName} onAnimationEnd={handleUnmountAnimationEnd} style={style}>
           {children}
         </div>
       )

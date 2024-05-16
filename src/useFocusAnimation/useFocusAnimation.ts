@@ -4,7 +4,7 @@ export default function useFocusAnimation<T extends HTMLElement>(
   onFocusClassName: string,
   onFocusOutClassName?: string,
   threshold?: number,
-  rootMargin?: string
+  rootMargin?: string,
 ) {
   const elementRef = useRef<T>(null);
 
@@ -30,7 +30,7 @@ export default function useFocusAnimation<T extends HTMLElement>(
         threshold: threshold || 0.1,
         rootMargin: rootMargin || '0px 0px 0px 0px',
       });
-      
+
       observer.observe(current);
 
       return () => observer && observer.disconnect();

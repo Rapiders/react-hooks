@@ -27,12 +27,8 @@ describe('useDragIndexCarousel', () => {
     const touchEvent = { touches: [{ clientX: 0 }] };
     const touchMove = { touches: [{ clientX: -100 }] };
 
-    act(() =>
-      result.current.handleTouchStart(touchEvent as unknown as TouchEvent)
-    );
-    act(() =>
-      result.current.handleTouchMove(touchMove as unknown as TouchEvent)
-    );
+    act(() => result.current.handleTouchStart(touchEvent as unknown as TouchEvent));
+    act(() => result.current.handleTouchMove(touchMove as unknown as TouchEvent));
     act(() => result.current.handleMoveEnd());
 
     expect(result.current.index).toBe(1);
@@ -43,12 +39,8 @@ describe('useDragIndexCarousel', () => {
     const touchEvent = { touches: [{ clientX: 0 }] };
     const touchMove = { touches: [{ clientX: 100 }] };
 
-    act(() =>
-      result.current.handleTouchStart(touchEvent as unknown as TouchEvent)
-    );
-    act(() =>
-      result.current.handleTouchMove(touchMove as unknown as TouchEvent)
-    );
+    act(() => result.current.handleTouchStart(touchEvent as unknown as TouchEvent));
+    act(() => result.current.handleTouchMove(touchMove as unknown as TouchEvent));
     act(() => result.current.handleMoveEnd());
 
     expect(result.current.index).toBe(0);
@@ -59,12 +51,8 @@ describe('useDragIndexCarousel', () => {
     const touchEvent = { touches: [{ clientX: 0 }] };
     const touchMove = { touches: [{ clientX: -90 }] };
 
-    act(() =>
-      result.current.handleTouchStart(touchEvent as unknown as TouchEvent)
-    );
-    act(() =>
-      result.current.handleTouchMove(touchMove as unknown as TouchEvent)
-    );
+    act(() => result.current.handleTouchStart(touchEvent as unknown as TouchEvent));
+    act(() => result.current.handleTouchMove(touchMove as unknown as TouchEvent));
     act(() => result.current.handleMoveEnd());
 
     expect(result.current.index).toBe(0);

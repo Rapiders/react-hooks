@@ -7,9 +7,7 @@ export default function Carousel() {
     'https://image.xportsnews.com/contents/images/upload/article/2023/0825/mb_1692925582785123.jpg',
     'https://photo.newsen.com/news_photo/2022/08/19/202208190935355510_1.jpg',
   ];
-  const { next, prev, CarouselWrapper, ref, isEnd, isStart } = useCarousel(
-    images.length
-  );
+  const { next, prev, CarouselWrapper, ref, isEnd, isStart } = useCarousel(images.length);
 
   return (
     <div
@@ -32,6 +30,7 @@ export default function Carousel() {
       >
         {images.map((image) => (
           <div
+            key={image}
             style={{
               width: '100%',
               height: '100%',

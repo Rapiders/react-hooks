@@ -1,4 +1,4 @@
-import { fireEvent, render, renderHook, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import useAnimation from './useAnimation';
 import React from 'react';
 describe('useAnimation 테스트', () => {
