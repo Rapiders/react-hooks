@@ -16,14 +16,15 @@
     "build": "sh build.sh",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "lint": "eslint ./src/**/*.{ts,tsx}",
+    "lint": "eslint  --cache --cache-location ./.cache/.eslintcache ./src/**/*.{ts,tsx}",
     "format": "prettier --cache --write .",
     "prepare": "husky install"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "eslint",
-      "prettier --write"
+      "eslint --cache --cache-location ./.cache/.eslintcache",
+      "prettier --cache --write",
+      "jest --passWithNoTests"
     ]
   },
   "keywords": [
