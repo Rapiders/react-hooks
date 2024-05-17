@@ -26,6 +26,31 @@ simple hook to change input components(uncontroll component) to controll compone
     </div>
 ```
 
+### useRadio
+
+A hook to use the uncontrolled Radio component as a controlled component.
+
+#### Generic
+
+By using generics, you can configure the Radio component in a type-safe manner when using the hook.
+
+```typescript
+type RadioType = '🍕' | '🍔' | '🍟' | '🌭';
+const { value, Radio, RadioGroup } = useRadio<RadioType>('🍕');
+```
+
+#### Function Arguments
+
+You can set a `defaultValue`.
+
+#### Return Values
+
+`value`: The currently selected value among the Radios.
+
+`Radio`: The Radio component. You can set the value in a type-safe manner through the hook. You can change the displayed value using children.
+
+`RadioGroup`: A group that wraps multiple Radios.
+
 ### useInterval
 
 simple hook to setInterval with React Component
