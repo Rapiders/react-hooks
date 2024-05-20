@@ -13,3 +13,7 @@ storybook-static
 .github
 rollup.config.cjs.js
 rollup.config.js
+coverage
+.husky
+.eslintrc.cjs
+.prettierrc
