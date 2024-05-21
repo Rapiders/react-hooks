@@ -1,6 +1,6 @@
 {
   "name": "@rapiders/react-hooks",
-  "version": "1.2.2",
+  "version": "1.2.5",
   "description": "react hooks for fast development",
   "main": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -12,7 +12,7 @@
   "homepage": "https://github.com/rapiders/react-hooks",
   "scripts": {
     "test": "jest",
-    "prepublish": "npm run build",
+    "prepublishOnly": "npm run build",
     "build": "sh build.sh",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
