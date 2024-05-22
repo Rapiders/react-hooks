@@ -34,10 +34,9 @@ export function _useDragIndexCarousel(pageLimit: number, minMove = 60, startInde
   };
 
   const getSliderWidth = () => {
-    if (ref.current) {
-      return ref.current.clientWidth;
-    }
-    return window.innerWidth;
+    // getSliderWidth는 상단의 useEffect에서 호출하는데, 여기서 ref.current를 확인하므로
+    // ref.current가 반드시 존재한다.
+    return ref!.current!.clientWidth;
   };
 
   const handleMoveEnd = () => {

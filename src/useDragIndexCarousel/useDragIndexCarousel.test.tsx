@@ -1,96 +1,236 @@
-import { renderHook, act } from '@testing-library/react';
-import { _useDragIndexCarousel } from './useDragIndexCarousel';
+import { fireEvent, render } from '@testing-library/react';
+import useDragIndexCarousel from './useDragIndexCarousel';
+import React from 'react';
 
-describe('useDragIndexCarousel', () => {
-  it('초기 상태 테스트 index로 시작할 수 있다.', () => {
-    const { result } = renderHook(() => _useDragIndexCarousel(3));
+const DATA = [1, 2, 3, 4];
+const WRAPPER_WIDTH = 500;
+const START_INDEX = 2;
 
-    expect(result.current.index).toBe(0);
+function TestComponent() {
+  const { CarouselWrapper, ref } = useDragIndexCarousel(DATA.length);
+
+  return (
+    <CarouselWrapper
+      ref={ref}
+      style={{
+        width: WRAPPER_WIDTH,
+        height: 500,
+      }}
+      className="wrapper"
+    >
+      {DATA.map((index) => (
+        <div
+          key={index}
+          style={{
+            width: '100%',
+            backgroundColor: 'black',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+          }}
+          role={String(index)}
+        >
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+            }}
+          >
+            {index}
+          </div>
+        </div>
+      ))}
+    </CarouselWrapper>
+  );
+}
+
+function IndexConfigureTestComponent() {
+  const { CarouselWrapper, ref } = useDragIndexCarousel(DATA.length, { startIndex: START_INDEX });
+
+  return (
+    <CarouselWrapper
+      ref={ref}
+      style={{
+        width: WRAPPER_WIDTH,
+        height: 500,
+      }}
+      className="wrapper"
+    >
+      {DATA.map((index) => (
+        <div
+          key={index}
+          style={{
+            width: '100%',
+            backgroundColor: 'black',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+          }}
+          role={String(index)}
+        >
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+            }}
+          >
+            {index}
+          </div>
+        </div>
+      ))}
+    </CarouselWrapper>
+  );
+}
+
+function InfinityTestComponent() {
+  const { CarouselWrapper, ref } = useDragIndexCarousel(DATA.length, {
+    infinity: true,
   });
 
-  it('index를 next, prev로 조작할 수 있다.', () => {
-    const { result } = renderHook(() => _useDragIndexCarousel(2));
+  return (
+    <CarouselWrapper
+      ref={ref}
+      style={{
+        width: WRAPPER_WIDTH,
+        height: 500,
+      }}
+      className="wrapper"
+    >
+      {DATA.map((index) => (
+        <div
+          key={index}
+          style={{
+            width: '100%',
+            backgroundColor: 'black',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+          }}
+          role={String(index)}
+        >
+          <div
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'contain',
+            }}
+          >
+            {index}
+          </div>
+        </div>
+      ))}
+    </CarouselWrapper>
+  );
+}
 
-    expect(result.current.index).toBe(0);
-    act(() => result.current.next());
-    expect(result.current.index).toBe(1);
-    act(() => result.current.prev());
-    expect(result.current.index).toBe(0);
-    expect(result.current.isStart).toBe(true);
-    act(() => result.current.next());
-    act(() => result.current.next());
-    expect(result.current.isEnd).toBe(true);
+beforeAll(() => {
+  Object.defineProperty(HTMLElement.prototype, 'clientWidth', {
+    configurable: true,
+    value: WRAPPER_WIDTH,
   });
 
-  it('모바일 터치이벤트 테스트: 절대값으로 minMove보다 많이, 오른쪽으로 슬라이드하면 index를 증가시킬 수 있다.', () => {
-    const { result } = renderHook(() => _useDragIndexCarousel(3, 60));
-    const touchEvent = { touches: [{ clientX: 0 }] };
-    const touchMove = { touches: [{ clientX: -100 }] };
+  Object.defineProperties(MouseEvent.prototype, {
+    pageX: {
+      get() {
+        return this.clientX;
+      },
+    },
+    pageY: {
+      get() {
+        return this.clientY;
+      },
+    },
+  });
+});
 
-    act(() => result.current.handleTouchStart(touchEvent as unknown as TouchEvent));
-    act(() => result.current.handleTouchMove(touchMove as unknown as TouchEvent));
-    act(() => result.current.handleMoveEnd());
+describe('useDragIndexCarousel 컴포넌트 기능 테스트', () => {
+  it('스크롤을 통해 Carousel을 넘길 수 있다.', () => {
+    const { container } = render(<TestComponent />);
+    const wrapper = container.querySelector<HTMLElement>('.wrapper')!;
+    const carousel = wrapper.querySelector('div')!;
 
-    expect(result.current.index).toBe(1);
+    fireEvent.mouseDown(carousel, { clientX: 0 });
+    fireEvent.mouseMove(carousel, { clientX: -100 });
+    fireEvent.mouseUp(carousel);
+    expect(carousel.style.transform).toBe(`translateX(${-WRAPPER_WIDTH}px)`);
+
+    fireEvent.mouseDown(carousel, { clientX: 0 });
+    fireEvent.mouseMove(carousel, { clientX: -100 });
+    fireEvent.mouseUp(carousel);
+    expect(carousel.style.transform).toBe(`translateX(${-2 * WRAPPER_WIDTH}px)`);
   });
 
-  it('모바일 터치이벤트 테스트: 절대값으로 minMove보다 많이, 왼쪽으로 슬라이드하면 index를 감소시킬 수 있다.', () => {
-    const { result } = renderHook(() => _useDragIndexCarousel(3, 60, 1));
-    const touchEvent = { touches: [{ clientX: 0 }] };
-    const touchMove = { touches: [{ clientX: 100 }] };
+  it('스크롤을 해도 첫 인덱스나 마지막 인덱스이면 Carousel이 넘어가지 않는다.', () => {
+    const { container } = render(<TestComponent />);
+    const wrapper = container.querySelector<HTMLElement>('.wrapper')!;
+    const carousel = wrapper.querySelector('div')!;
+    const scrollRight = () => {
+      fireEvent.mouseDown(carousel, { clientX: 0 });
+      fireEvent.mouseMove(carousel, { clientX: -100 });
+      fireEvent.mouseUp(carousel);
+    };
 
-    act(() => result.current.handleTouchStart(touchEvent as unknown as TouchEvent));
-    act(() => result.current.handleTouchMove(touchMove as unknown as TouchEvent));
-    act(() => result.current.handleMoveEnd());
+    const scrollLeft = () => {
+      fireEvent.mouseDown(carousel, { clientX: 0 });
+      fireEvent.mouseMove(carousel, { clientX: 100 });
+      fireEvent.mouseUp(carousel);
+    };
 
-    expect(result.current.index).toBe(0);
+    Array.from({ length: 10 }).forEach(() => scrollRight());
+    expect(carousel.style.transform).toBe(`translateX(${-3 * WRAPPER_WIDTH}px)`);
+    Array.from({ length: 10 }).forEach(() => scrollLeft());
+    expect(carousel.style.transform).toBe(`translateX(${0}px)`);
+  });
+});
+
+describe('useDragIndexCarousel Infinity 컴포넌트 테스트', () => {
+  it('Infinity option이 true인 경우, translateX는 WRAPPER_WIDTH (index=1)로 시작한다.', () => {
+    const { container } = render(<InfinityTestComponent />);
+    const wrapper = container.querySelector<HTMLElement>('.wrapper')!;
+    const carousel = wrapper.querySelector('div')!;
+    expect(carousel.style.transform).toBe(`translateX(${-WRAPPER_WIDTH}px)`);
   });
 
-  it('모바일 터치이벤트 테스트: 절대값으로 minMove보다 적게,  슬라이드하면 index를 유지시킬 수 있다.', () => {
-    const { result } = renderHook(() => _useDragIndexCarousel(3, 100));
-    const touchEvent = { touches: [{ clientX: 0 }] };
-    const touchMove = { touches: [{ clientX: -90 }] };
+  it('Infinity option이 true인 경우, 인덱스 양끝단을 오갈 수 있다.', () => {
+    const { container } = render(<InfinityTestComponent />);
+    const wrapper = container.querySelector<HTMLElement>('.wrapper')!;
+    const carousel = wrapper.querySelector('div')!;
+    expect(carousel.style.transform).toBe(`translateX(${-WRAPPER_WIDTH}px)`);
 
-    act(() => result.current.handleTouchStart(touchEvent as unknown as TouchEvent));
-    act(() => result.current.handleTouchMove(touchMove as unknown as TouchEvent));
-    act(() => result.current.handleMoveEnd());
+    const scrollRight = () => {
+      fireEvent.mouseDown(carousel, { clientX: 0 });
+      fireEvent.mouseMove(carousel, { clientX: -100 });
+      fireEvent.mouseUp(carousel);
+    };
 
-    expect(result.current.index).toBe(0);
+    const scrollLeft = () => {
+      fireEvent.mouseDown(carousel, { clientX: 0 });
+      fireEvent.mouseMove(carousel, { clientX: 100 });
+      fireEvent.mouseUp(carousel);
+    };
+
+    scrollLeft();
+    expect(carousel.style.transform).toBe(`translateX(${0}px)`);
+    fireEvent.transitionEnd(carousel);
+    expect(carousel.style.transform).toBe(`translateX(${-WRAPPER_WIDTH * DATA.length}px)`);
+
+    Array.from({ length: 2 }).forEach(() => scrollRight());
+    expect(carousel.style.transform).toBe(`translateX(${-WRAPPER_WIDTH * (DATA.length + 1)}px)`);
+    fireEvent.transitionEnd(carousel);
+    expect(carousel.style.transform).toBe(`translateX(${-WRAPPER_WIDTH}px)`);
   });
+});
 
-  it('PC 스크롤이벤트 테스트: 절대값으로 minMove보다 많이, 오른쪽으로 슬라이드하면 index를 증가시킬 수 있다.', () => {
-    const { result } = renderHook(() => _useDragIndexCarousel(3, 60));
-    const touchEvent = { pageX: 0 };
-    const touchMove = { pageX: -100 };
-
-    act(() => result.current.handleScrollStart(touchEvent as MouseEvent));
-    act(() => result.current.handleScrollMove(touchMove as MouseEvent));
-    act(() => result.current.handleMoveEnd());
-
-    expect(result.current.index).toBe(1);
-  });
-
-  it('PC 스크롤이벤트 테스트: 절대값으로 minMove보다 많이, 왼쪽으로 슬라이드하면 index를 감소시킬수 있다.', () => {
-    const { result } = renderHook(() => _useDragIndexCarousel(3, 60, 1));
-    const touchEvent = { pageX: 0 };
-    const touchMove = { pageX: 100 };
-
-    act(() => result.current.handleScrollStart(touchEvent as MouseEvent));
-    act(() => result.current.handleScrollMove(touchMove as MouseEvent));
-    act(() => result.current.handleMoveEnd());
-
-    expect(result.current.index).toBe(0);
-  });
-
-  it('PC 스크롤이벤트 테스트: 절대값으로 minMove보다 적게 슬라이드하면 index를 유지시킬 수 있다.', () => {
-    const { result } = renderHook(() => _useDragIndexCarousel(3, 100, 1));
-    const touchEvent = { pageX: 0 };
-    const touchMove = { pageX: 60 };
-
-    act(() => result.current.handleScrollStart(touchEvent as MouseEvent));
-    act(() => result.current.handleScrollMove(touchMove as MouseEvent));
-    act(() => result.current.handleMoveEnd());
-
-    expect(result.current.index).toBe(1);
+describe('startIndex 지정 테스트', () => {
+  it('startIndex를 지정할 수 있다.', () => {
+    const { container } = render(<IndexConfigureTestComponent />);
+    const wrapper = container.querySelector<HTMLElement>('.wrapper')!;
+    const carousel = wrapper.querySelector('div')!;
+    expect(carousel.style.transform).toBe(`translateX(${-START_INDEX * WRAPPER_WIDTH}px)`);
   });
 });
