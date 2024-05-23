@@ -73,6 +73,48 @@ export default Component() {
 }
 ```
 
+### useDebounce
+
+A hook that makes debounce easy to use.
+No matter how many times a returned function is called, it is performed only once after a specified time after the function stops being called.
+
+```ts
+const callback = () => {};
+const debounce = useDebounce(() => callback, 1000); // 1000ms
+```
+
+#### Function Arguments
+
+`callback`: The function to be executed at the end via debounce.
+
+`time` : The delay time to perform a callback after a function call has stopped, in ms.
+
+#### Return value
+
+`debounceFunction` : Returns callback with debounce.
+
+### useThrottle
+
+A hook that makes it easy to use the trottle.
+No matter how many times the returned function is called, it is performed once per specified time.
+
+```ts
+    ...
+    const callback=() => {};
+    const throttle=useThrottle(callback, 1000); // 1000ms
+    return <button onClick={throttle}>Click me!</button>
+```
+
+#### Function Arguments
+
+`callback` : The callback function to be performed by applying a triple.
+
+`time` : Specifies how often to perform the throttle (in ms)
+
+#### Return value
+
+`throttleFunction` : Returns the callback with the throttle applied.
+
 ## Animation
 
 The animation of this package is based on ClassName by default.
