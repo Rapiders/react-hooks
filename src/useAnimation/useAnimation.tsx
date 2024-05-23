@@ -31,10 +31,10 @@ export default function useAnimation({ mountClassName, unmountClassName }: { mou
   const show = () => setIsShow(true);
   const hide = () => triggerUnmountAnimation();
 
-  const AnimationWrapper = ({ children, style }: { children: ReactNode; style?: CSSProperties }) => {
+  const AnimationWrapper = ({ children, style, className }: { children: ReactNode; style?: CSSProperties; className?: string }) => {
     return (
       isShow && (
-        <div className={animationClassName} onAnimationEnd={handleUnmountAnimationEnd} style={style}>
+        <div className={`${animationClassName} ${className}`} onAnimationEnd={handleUnmountAnimationEnd} style={style}>
           {children}
         </div>
       )
