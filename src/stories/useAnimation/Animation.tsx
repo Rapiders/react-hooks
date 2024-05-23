@@ -1,6 +1,6 @@
 import React from 'react';
-import './animation.css';
 import useAnimation from '@/useAnimation/useAnimation';
+import { animationWrapper, flexCol } from './Animation.css';
 
 export const Animation = ({ mountClassName, unmountClassName }: { mountClassName?: string; unmountClassName?: string }) => {
   const { show, hide, isShow, AnimationWrapper } = useAnimation({
@@ -14,13 +14,8 @@ export const Animation = ({ mountClassName, unmountClassName }: { mountClassName
   };
 
   return (
-    <div className="flex">
-      <AnimationWrapper
-        style={{
-          width: 100,
-          height: 100,
-        }}
-      >
+    <div className={flexCol}>
+      <AnimationWrapper className={animationWrapper}>
         <div
           style={{
             width: '100%',

@@ -1,5 +1,7 @@
 import useCarousel from '@/useCarousel/useCarousel';
 import React from 'react';
+import { carouselDiv, carouselImage, carouselWrapper, wrapper } from './Carousel.css';
+
 export default function Carousel() {
   const images = [
     'https://i.namu.wiki/i/8BAuDmjlFbHoGpGTyTUJyeIsrWw7vrGKTvbOBS1DbaLNHHFL6D05TSZEyVGGffn_RIs6zrf4jCb5Xq5Lnbs8QQ.webp',
@@ -10,41 +12,14 @@ export default function Carousel() {
   const { next, prev, CarouselWrapper, ref, isEnd, isStart } = useCarousel(images.length);
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        gap: 15,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+    <div className={wrapper}>
       <button onClick={prev} disabled={isStart}>
         &lt;
       </button>
-      <CarouselWrapper
-        ref={ref}
-        style={{
-          width: 800,
-          height: 600,
-        }}
-      >
+      <CarouselWrapper ref={ref} className={carouselWrapper}>
         {images.map((image) => (
-          <div
-            key={image}
-            style={{
-              width: '100%',
-              height: '100%',
-              backgroundColor: 'black',
-            }}
-          >
-            <img
-              src={image}
-              style={{
-                objectFit: 'contain',
-                width: '100%',
-                height: '100%',
-              }}
-            />
+          <div key={image} className={carouselDiv}>
+            <img src={image} className={carouselImage} />
           </div>
         ))}
       </CarouselWrapper>

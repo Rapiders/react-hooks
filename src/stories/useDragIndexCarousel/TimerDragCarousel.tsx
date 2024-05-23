@@ -2,6 +2,7 @@ import useDragIndexCarousel from '../../useDragIndexCarousel/useDragIndexCarouse
 import useInterval from '../../useInterval/useInterval';
 
 import React, { useEffect } from 'react';
+import { carouselDiv, carouselImage, carouselWrapper } from './DragCarousel.css';
 
 export default function TimerDragCarousel() {
   const images = [
@@ -20,34 +21,10 @@ export default function TimerDragCarousel() {
   }, [isDragging]);
 
   return (
-    <CarouselWrapper
-      ref={ref}
-      style={{
-        width: 500,
-        height: 500,
-      }}
-    >
+    <CarouselWrapper ref={ref} className={carouselWrapper}>
       {images.map((image) => (
-        <div
-          key={image}
-          style={{
-            width: '100%',
-            backgroundColor: 'black',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100%',
-          }}
-        >
-          <img
-            src={image}
-            draggable={false}
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'contain',
-            }}
-          />
+        <div key={image} className={carouselDiv}>
+          <img src={image} draggable={false} className={carouselImage} />
         </div>
       ))}
     </CarouselWrapper>

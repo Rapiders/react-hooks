@@ -23,8 +23,12 @@ export default function Interval({ time }: { time: number }) {
           gap: 5,
         }}
       >
-        <button onClick={intervalRunning ? stop : continueTimer}>{intervalRunning ? 'STOP' : string === '' ? 'START' : 'CONTINUE'}</button>
-        <button onClick={() => setString('')}>RESET</button>
+        <button style={{ fontSize: 15 }} onClick={intervalRunning ? stop : continueTimer}>
+          {intervalRunning ? 'STOP' : string === '' ? 'START' : 'CONTINUE'}
+        </button>
+        <button style={{ fontSize: 15 }} onClick={() => setString('')}>
+          RESET
+        </button>
       </div>
     </>
   );

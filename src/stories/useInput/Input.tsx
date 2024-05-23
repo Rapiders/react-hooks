@@ -1,22 +1,24 @@
 import useInput from '@/useInput/useInput';
 import React from 'react';
-import './input.css';
+import { button, buttonWrapper, flex, input } from './Input.css';
 
 export default function Input() {
   const { value, reset, onChange } = useInput('');
   return (
     <>
       <form
-        className="flex"
+        className={flex}
         onSubmit={(e) => {
           e.preventDefault();
           alert(value);
         }}
       >
-        <input value={value} onChange={onChange} />
-        <div className="button-wrapper">
-          <button type="submit">SUBMIT</button>
-          <button onClick={reset} type="button">
+        <input value={value} onChange={onChange} className={input} />
+        <div className={buttonWrapper}>
+          <button className={button} type="submit">
+            SUBMIT
+          </button>
+          <button className={button} onClick={reset} type="button">
             RESET
           </button>
         </div>
