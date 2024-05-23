@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useInterval from '../../useInterval/useInterval';
+import useInterval from '@/useInterval/useInterval';
 const STRING = 'Interval 수행!\n';
 export default function Interval({ time }: { time: number }) {
   const { intervalRunning, stop, continueTimer } = useInterval(() => setString((prev) => prev + STRING), time);

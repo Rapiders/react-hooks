@@ -1,4 +1,4 @@
-import useDragIndexCarousel from '../../useDragIndexCarousel/useDragIndexCarousel';
+import useDragIndexCarousel from '@/useDragIndexCarousel/useDragIndexCarousel';
 import React from 'react';
 
 export default function DragCarousel() {

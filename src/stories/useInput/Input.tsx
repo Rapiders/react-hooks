@@ -1,4 +1,4 @@
-import useInput from '../../useInput/useInput';
+import useInput from '@/useInput/useInput';
 import React from 'react';
 import './input.css';
 

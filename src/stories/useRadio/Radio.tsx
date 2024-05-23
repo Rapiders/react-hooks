@@ -1,5 +1,5 @@
 import React from 'react';
-import useRadio from '../../useRadio/useRadio';
+import useRadio from '@/useRadio/useRadio';
 
 type RadioType = '🍕' | '🍔' | '🍟' | '🌭';
 
