@@ -12,6 +12,7 @@
   "homepage": "https://github.com/rapiders/react-hooks",
   "scripts": {
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "prepublishOnly": "npm run build",
     "build": "sh build.sh",
     "storybook": "storybook dev -p 6006",
