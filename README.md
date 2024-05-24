@@ -115,6 +115,47 @@ No matter how many times the returned function is called, it is performed once p
 
 `throttleFunction` : Returns the callback with the throttle applied.
 
+### useLocalStorage
+
+`useLocalStorage` is a custom hook that makes it easy for React applications to use local storage, which allows you to implement the ability to store, update, and remove data on local storage, and optionally set the expiration time for data.
+
+```tsx
+function App() {
+  const [name, setName, removeName] = useLocalStorage<string>('name', 'old name', {
+    serializer: (value: string) => value,
+    deserializer: (storedValue: string) => storedValue,
+  }); // 24h
+
+  return (
+    <div>
+      <p>{`Name: ${name}`}</p>
+      <button onClick={() => setName('new name')}>change name</button>
+      <button onClick={removeName}>remove name</button>
+    </div>
+  );
+}
+```
+
+#### Generic
+
+`<T>`: Type of data stored on local storage.
+
+#### Function Arguments
+
+`key (string)`: Key to local storage
+
+`initialValue (T | null)`: Initial value of local storage
+
+`options (UseLocalStorageOptions | undefined)`: You can specify serializer and deserializer, which are executed when values are stored in and imported from local storage, respectively.
+
+#### Return Values
+
+`value (T | null)`: The value currently stored on local storage.
+
+`saveValue (function)`: A function that stores a new value on local storage.
+
+`removeValue (function)`: A function that removes values related to the current key from the local storage.
+
 ## Animation
 
 The animation of this package is based on ClassName by default.

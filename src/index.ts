@@ -9,6 +9,7 @@ import useAfterMountEffect from './useAfterMountEffect/useAfterMountEffect';
 import useRadio from './useRadio/useRadio';
 import useThrottle from './useThrottle/useThrottle';
 import useDebounce from './useDebounce/useDebounce';
+import useLocalStorage from './useLocalStorage/useLocalStorage';
 
 export {
   useInput,
@@ -22,4 +23,5 @@ export {
   useRadio,
   useThrottle,
   useDebounce,
+  useLocalStorage,
 };
