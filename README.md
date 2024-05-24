@@ -121,7 +121,10 @@ No matter how many times the returned function is called, it is performed once p
 
 ```tsx
 function App() {
-  const [name, setName, removeName] = useLocalStorage<string>('name', 'old name', { expire: 1000 * 60 * 60 * 24 }); // 24h
+  const [name, setName, removeName] = useLocalStorage<string>('name', 'old name', {
+    serializer: (value: string) => value,
+    deserializer: (storedValue: string) => storedValue,
+  }); // 24h
 
   return (
     <div>
@@ -143,7 +146,7 @@ function App() {
 
 `initialValue (T | null)`: Initial value of local storage
 
-`options (UseLocalStorageOptions | undefined)`: You can set the expiration time (expire) of values stored on local storage in milliseconds
+`options (UseLocalStorageOptions | undefined)`: You can specify serializer and deserializer, which are executed when values are stored in and imported from local storage, respectively.
 
 #### Return Values
 
