@@ -1,6 +1,6 @@
 {
   "include": ["src"],
-  "exclude": ["node_modules", "src/stories", "**/**/*.test.ts", "**/**/*.test.tsx"],
+  "exclude": ["node_modules", "**/**/*.test.ts", "**/**/*.test.tsx"],
   "compilerOptions": {
     "outDir": "./dist/esm",
     "module": "ESNext",
