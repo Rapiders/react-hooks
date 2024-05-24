@@ -1,0 +1,23 @@
+import { Canvas, Meta, Description } from '@storybook/blocks';
+import * as Debounce from './Debounce.stories';
+
+<Meta of={Debounce} />
+
+# useDebounce
+
+debounce를 간편하게 사용할 수 있게 하는 훅입니다.
+반환된 함수를 아무리 많이 호출하여도 해당 함수의 호출이 멈춘 후 지정된 시간 후에 단 1회 수행됩니다.
+
+## 함수 인자
+
+`callback`: debounce 통해 마지막에 실행시킬 함수입니다.
+
+`time` : 함수 호출이 멈춘 후에 callback을 수행시킬 지연 시간입니다. 단위는 ms입니다.
+
+## 반환값
+
+`debounceFunction` : debounce가 적용된 callback이 반환됩니다.
+
+아래 예시에서는 500ms단위로 debounce가 적용됩니다.
+
+<Canvas of={Debounce.defaultStory} />

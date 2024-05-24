@@ -7,6 +7,8 @@ import useScrollRatio from './useScrollRatio';
 import useInterval from './useInterval/useInterval';
 import useAfterMountEffect from './useAfterMountEffect/useAfterMountEffect';
 import useRadio from './useRadio/useRadio';
+import useThrottle from './useThrottle/useThrottle';
+import useDebounce from './useDebounce/useDebounce';
 
 export {
   useInput,
@@ -18,4 +20,6 @@ export {
   useInterval,
   useAfterMountEffect,
   useRadio,
+  useThrottle,
+  useDebounce,
 };

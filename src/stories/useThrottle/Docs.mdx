@@ -1,0 +1,29 @@
+import { Canvas, Meta, Description } from '@storybook/blocks';
+import * as Throttle from './Throttle.stories';
+
+<Meta of={Throttle} />
+
+# useThrottle
+
+throttle을 간편하게 사용할 수 있게 하는 훅입니다.
+반환된 함수를 아무리 많이 호출하여도 지정한 시간당 1회 수행됩니다.
+
+```typescript
+    ...
+    const throttle=useThrottle(callback, 1000);
+    return <button onClick={throttle}>Click me!</button>
+```
+
+## 함수 인자
+
+`callback` : throttle을 적용하여 수행할 콜백 함수입니다.
+
+`time` : 얼마 간격으로 throttle을 수행할지 시간을 지정합니다. (ms단위)
+
+## 반환값
+
+`throttleFunction` : throttle이 적용된 callback이 반환됩니다.
+
+아래 예시에서는 500ms단위로 throttle이 적용됩니다.
+
+<Canvas of={Throttle.defaultStory} />
