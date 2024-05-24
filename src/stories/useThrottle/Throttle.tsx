@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useThrottle from '../../useThrottle/useThrottle';
+import { button, flex } from './Throttle.css';
 
 export default function Throttle({ time }: { time: number }) {
   const [counter, setCounter] = useState(0);
@@ -12,19 +13,13 @@ export default function Throttle({ time }: { time: number }) {
     setRealCounter((prev) => prev + 1);
   };
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-        gap: 10,
-      }}
-    >
+    <div className={flex}>
       <div>
         {realCounter}번 눌렀는데, {counter}회 실행되었습니다.
       </div>
-      <button onClick={handleClick}>Click Me!</button>
+      <button onClick={handleClick} className={button}>
+        Click Me!
+      </button>
     </div>
   );
 }
