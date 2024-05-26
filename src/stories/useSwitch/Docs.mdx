@@ -1,0 +1,55 @@
+import { Canvas, Meta, Description } from '@storybook/blocks';
+import * as SwitchStories from './Switch.stories';
+
+<Meta of={SwitchStories} />
+
+# useSwitch
+
+useSwitch를 통해 선언적으로 Switch(or Toggle) 컴포넌트를 관리할 수 있습니다.
+
+## 함수인자
+
+defaultValue를 통해 초기 토글의 켬/꺼짐 상태를 결정할 수 있습니다.
+
+## 반환값
+
+### `isOn` (default `false`)
+switch의 상태를 나타냅니다. switch가 켜져있으면 `true`, 아니면 `false`입니다.
+
+### `on`
+switch를 켜짐 상태로 전환합니다.
+
+### `off`
+switch를 꺼짐 상태로 전환합니다.
+
+### `toggle`
+switch의 켜진 상태를 반전시킵니다.
+
+## 기본 사용 예시
+
+```typescript
+export default function Switch() {
+  import useSwitch from '../../useSwitch/useSwitch';
+  import React, { ChangeEventHandler } from 'react';
+
+  import './Switch.css';
+
+  export default function Switch() {
+    const sw = useSwitch(false);
+
+    const handleChangeSwitch: ChangeEventHandler<HTMLInputElement> = () => {
+      sw.toggle();
+    };
+
+    return (
+      <label className="switch">
+        <input type="checkbox" checked={sw.isOn} onChange={handleChangeSwitch} />
+        <span className="slider round"></span>
+        check
+      </label>
+    );
+  }
+}
+```
+
+<Canvas of={SwitchStories.defaultStory} />
