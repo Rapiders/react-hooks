@@ -3,6 +3,12 @@
 We welcome contribution from everyone in the community.
 you can use English and [Korean](https://github.com/Rapiders/react-hooks/tree/main/.github/CONTRIBUTING.ko.md)
 
+## Fork
+
+1. If you wish to contribute, first fork this repository.
+2. Once your work is complete, open a PR to the main branch.
+3. To be merged, it must receive at least one approval from a maintainer.
+
 ## Issue
 
 You can contribute to library via:

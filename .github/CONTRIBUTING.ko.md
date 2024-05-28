@@ -3,6 +3,12 @@
 커뮤니티의 모든 분들의 Contribution을 환영합니다.
 [영어](https://github.com/Rapiders/react-hooks/tree/main/.github/CONTRIBUTING.md)와 한국어 중 편한 언어를 사용하면 됩니다.
 
+## Fork
+
+1.  기여하고 싶은 경우 우선 이 레포지토리를 fork 합니다.
+2.  작업이 완료되었다면 main 브랜치로 PR을 오픈합니다.
+3.  merge 되기 위해서는 반드시 maintainer 중 한 명이 이상의 approve를 받아야 합니다.
+
 ## Issue
 
 라이브러리에 기여하는 방법:
@@ -37,7 +43,7 @@
 - docs (Storybook 이나 README)
 - test
 
-기타
+이외 모든 변경
 
 - chore
 
