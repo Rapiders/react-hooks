@@ -10,6 +10,7 @@ import useRadio from './useRadio/useRadio';
 import useThrottle from './useThrottle/useThrottle';
 import useDebounce from './useDebounce/useDebounce';
 import useLocalStorage from './useLocalStorage/useLocalStorage';
+import useDisclosure from './useDisclosure/useDisclosure';
 
 export {
   useInput,
@@ -24,4 +25,5 @@ export {
   useThrottle,
   useDebounce,
   useLocalStorage,
+  useDisclosure,
 };
