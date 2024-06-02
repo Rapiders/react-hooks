@@ -1,7 +1,6 @@
 import useSwitch from '../../useSwitch/useSwitch';
 import React, { ChangeEventHandler } from 'react';
-
-import './Switch.css';
+import { baseSlider, checkedSlider, round, switchInput, switchLabel } from './Switch.css';
 
 export default function Switch() {
   const sw = useSwitch(false);
@@ -11,9 +10,9 @@ export default function Switch() {
   };
 
   return (
-    <label className="switch">
-      <input type="checkbox" checked={sw.isOn} onChange={handleChangeSwitch} />
-      <span className="slider round"></span>
+    <label className={switchLabel}>
+      <input type="checkbox" checked={sw.isOn} onChange={handleChangeSwitch} className={switchInput} />
+      <span className={`${sw.isOn ? checkedSlider : baseSlider} ${round}`}></span>
       check
     </label>
   );
