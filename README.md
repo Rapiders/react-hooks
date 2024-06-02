@@ -157,6 +157,24 @@ function App() {
 
 `removeValue (function)`: A function that removes values related to the current key from the local storage.
 
+### useSwitch
+
+You can declaratively manage a Switch (or Toggle) component using useSwitch.
+
+#### Function Arguments
+
+You can determine the initial on/off state of the toggle through `defaultValue`.
+
+#### Return Values
+
+`isOn` (default `false`) : Indicates the state of the switch. If the switch is on, it returns `true`; otherwise, it returns `false`.
+
+`on` : Turns the switch to the on state.
+
+`off` : Turns the switch to the off state.
+
+`toggle` : Reverses the current state of the switch.
+
 ## Animation
 
 The animation of this package is based on ClassName by default.
