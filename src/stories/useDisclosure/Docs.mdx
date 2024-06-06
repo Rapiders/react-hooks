@@ -1,0 +1,56 @@
+import { Canvas, Meta, Description } from '@storybook/blocks';
+import * as DisclosureStories from './Disclosure.stories';
+
+<Meta of={DisclosureStories} />
+
+# useDisclosure
+
+useDisclosure를 통해 선언적으로 Modal, Disclosure등의 컴포넌트를 관리할 수 있습니다.
+
+## 함수인자
+
+defaultValue를 통해 초기 요소의 열림/닫힘 상태를 결정할 수 있습니다.
+
+## 반환값
+
+### `isOpen` (default `false`)
+
+요소의 열림 상태를 나타냅니다. 요소가 열려있으면 `true`, 아니면 `false`입니다.
+
+### `open`
+
+요소를 열림 상태로 전환합니다.
+
+### `close`
+
+요소를 닫힘 상태로 전환합니다.
+
+## 기본 사용 예시
+
+```typescript
+import useDisclosure from '../../useDisclosure/useDisclosure';
+import React from 'react';
+
+export default function UseDisclosureExample() {
+  const modal = useDisclosure(false);
+
+  const handleOpenModal = () => {
+    modal.open();
+  };
+  const handleCloseModal = () => {
+    modal.close();
+  };
+
+  return (
+    <label className="switch">
+      <button onClick={handleOpenModal}>open</button>
+      <dialog open={modal.isOpen}>
+        Hello World
+        <button onClick={handleCloseModal}>close</button>
+      </dialog>
+    </label>
+  );
+}
+```
+
+<Canvas of={DisclosureStories.defaultStory} />
