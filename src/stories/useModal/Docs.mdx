@@ -9,7 +9,26 @@ import * as Modal from './Modal.stories';
 
 ## 함수 인자
 
-`modalRoot`: 모달을 렌더링할 HTMLElement입니다. document.body가 default입니다.
+modalProps객체를 받습니다. 해당 객체는 아래와 같이 구성됩니다.
+
+```ts
+interface UseModalProps {
+  modalRoot?: ModalRoot;
+  overlayClose?: boolean;
+  overlayAnimation?: {
+    showClassName?: string;
+    hideClassName?: string;
+  };
+  modalAnimation?: {
+    showClassName?: string;
+    hideClassName?: string;
+  };
+}
+```
+
+`modalRoot`: 모달을 렌더링할 HTMLElement입니다. default는 `document.body`입니다.
+
+`overlayClose`: overlay를 눌러 modal을 닫을지를 설정합니다. default는 `true`입니다.
 
 `overlayAnimation`: Overlay에 적용될 애니메이션 className입니다. `showClassName`과 `hideClassName` 두 가지 key-value를 받을 수 있습니다.
 

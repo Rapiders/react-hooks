@@ -335,7 +335,26 @@ A hook for easily managing an animated modal through a portal.
 
 #### Function Arguments
 
+modalProps object is accepted. This object is structured as follows:
+
+```ts
+interface UseModalProps {
+  modalRoot?: ModalRoot;
+  overlayClose?: boolean;
+  overlayAnimation?: {
+    showClassName?: string;
+    hideClassName?: string;
+  };
+  modalAnimation?: {
+    showClassName?: string;
+    hideClassName?: string;
+  };
+}
+```
+
 `modalRoot`: The HTMLElement where the modal will be rendered. The default is `document.body`.
+
+`overlayClose`: Sets whether clicking on the overlay closes the modal. The default is `true`.
 
 `overlayAnimation`: The animation className applied to the overlay. It can accept two key-value pairs: `showClassName` and `hideClassName`.
 
