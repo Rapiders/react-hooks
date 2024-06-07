@@ -328,3 +328,25 @@ const SomeComponent = () => {
   );
 };
 ```
+
+### useModal
+
+A hook for easily managing an animated modal through a portal.
+
+#### Function Arguments
+
+`modalRoot`: The HTMLElement where the modal will be rendered. The default is `document.body`.
+
+`overlayAnimation`: The animation className applied to the overlay. It can accept two key-value pairs: `showClassName` and `hideClassName`.
+
+`modalAnimation`: The animation className applied to the modal. It can accept two key-value pairs: `showClassName` and `hideClassName`.
+
+#### Return Values
+
+`Modal`: A component that renders its children to the specified root through a portal.
+
+`show`: Opens the modal.
+
+`hide`: Closes the modal.
+
+`isShow`: Indicates whether the modal is open.
