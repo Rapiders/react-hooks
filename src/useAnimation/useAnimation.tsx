@@ -1,4 +1,4 @@
-import React, { CSSProperties, ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 
 export function _useAnimation(mountAnimationClassName?: string, unmountAnimationClassName?: string, unmountCallback?: () => void) {
   const [animationClassName, setAnimationClassName] = useState<string | undefined>(mountAnimationClassName);
@@ -31,10 +31,10 @@ export default function useAnimation({ mountClassName, unmountClassName }: { mou
   const show = () => setIsShow(true);
   const hide = () => triggerUnmountAnimation();
 
-  const AnimationWrapper = ({ children, style, className }: { children: ReactNode; style?: CSSProperties; className?: string }) => {
+  const AnimationWrapper = ({ children, className, ...rest }: { className?: string } & React.ComponentProps<'div'>) => {
     return (
       isShow && (
-        <div className={`${animationClassName} ${className}`} onAnimationEnd={handleUnmountAnimationEnd} style={style}>
+        <div className={`${animationClassName} ${className}`} onAnimationEnd={handleUnmountAnimationEnd} {...rest}>
           {children}
         </div>
       )
