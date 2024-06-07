@@ -3,7 +3,7 @@ import { renderHook, act } from '@testing-library/react';
 
 describe('useBoolean 기능테스트', () => {
   it('useBoolean은 boolean상태를 나타내는 값과 그 boolean을 변경할 수 있는 값을 배열로 반환한다.', () => {
-    const { result } = renderHook(() => useBoolean(false));
+    const { result } = renderHook(() => useBoolean());
 
     expect(result.current[0]).toBe(false);
     act(() => {
