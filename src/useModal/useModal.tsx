@@ -16,6 +16,7 @@ export type UseModalAnimations = {
 
 interface UseModalProps extends UseModalAnimations {
   modalRoot?: ModalRoot;
+  overlayClose?: boolean;
 }
 
 interface ModalProps {
@@ -30,6 +31,7 @@ const DefaultModal = ({ children, modalRoot }: { children: ReactNode; modalRoot?
 };
 
 export default function useModal(modalProps?: UseModalProps) {
+  const overlayClose = modalProps?.overlayClose || true;
   const ModalAnimation = useAnimation({
     mountClassName: modalProps?.modalAnimation?.showClassName,
     unmountClassName: modalProps?.modalAnimation?.hideClassName,
@@ -51,7 +53,7 @@ export default function useModal(modalProps?: UseModalProps) {
 
   const Modal = ({ children, overlayClassName, modalClassName, style }: ModalProps) => (
     <DefaultModal modalRoot={modalProps?.modalRoot}>
-      <OverlayAnimation.AnimationWrapper className={overlayClassName} onClick={hide}>
+      <OverlayAnimation.AnimationWrapper className={overlayClassName} onClick={overlayClose && hide}>
         <ModalAnimation.AnimationWrapper className={modalClassName} style={style} onClick={(e) => e.stopPropagation()}>
           {children}
         </ModalAnimation.AnimationWrapper>
