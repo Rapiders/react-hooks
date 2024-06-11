@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { useAnimation } from '..';
 type ModalRoot = Element | DocumentFragment;
 
-export type UseModalAnimations = {
+export interface UseModalAnimations {
   overlayAnimation?: {
     showClassName?: string;
     hideClassName?: string;
@@ -12,7 +12,7 @@ export type UseModalAnimations = {
     showClassName?: string;
     hideClassName?: string;
   };
-};
+}
 
 interface UseModalProps extends UseModalAnimations {
   modalRoot?: ModalRoot;
