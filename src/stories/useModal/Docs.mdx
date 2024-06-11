@@ -1,0 +1,77 @@
+import { Canvas, Meta, Description } from '@storybook/blocks';
+import * as Modal from './Modal.stories';
+
+<Meta of={Modal} />
+
+# useModal
+
+애니메이션이 적용된 Modal을 portal을 통해 간편하게 관리하기 위한 훅입니다.
+
+## 함수 인자
+
+modalProps객체를 받습니다. 해당 객체는 아래와 같이 구성됩니다.
+
+```ts
+interface UseModalProps {
+  modalRoot?: ModalRoot;
+  overlayClose?: boolean;
+  overlayAnimation?: {
+    showClassName?: string;
+    hideClassName?: string;
+  };
+  modalAnimation?: {
+    showClassName?: string;
+    hideClassName?: string;
+  };
+}
+```
+
+`modalRoot`: 모달을 렌더링할 HTMLElement입니다. default는 `document.body`입니다.
+
+`overlayClose`: overlay를 눌러 modal을 닫을지를 설정합니다. default는 `true`입니다.
+
+`overlayAnimation`: Overlay에 적용될 애니메이션 className입니다. `showClassName`과 `hideClassName` 두 가지 key-value를 받을 수 있습니다.
+
+`modalAnimation`: Modal에 적용될 애니메이션 className입니다. `showClassName`과 `hideClassName` 두 가지 key-value를 받을 수 있습니다.
+
+## 반환값
+
+`Modal`: 컴포넌트로,해당 컴포넌트로 감싸진 children이 지정한 root에 portal을 통해 렌더링 됩니다.
+
+`show`: 모달을 엽니다.
+
+`hide`: 모달을 닫습니다.
+
+`isShow`: 모달이 열려있는지 상태를 나타냅니다.
+
+```tsx
+function Modal() {
+  const { Modal, show, isShow, hide } = useModal({
+    modalAnimation: {
+      showClassName: showStyle,
+      hideClassName: hideStyle,
+    },
+    overlayAnimation: {
+      showClassName: overlayShow,
+      hideClassName: overlayHide,
+    },
+  });
+
+  const handleClick = () => {
+    if (isShow) hide();
+    show();
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>{isShow ? 'hide' : 'show'}</button>
+      <Modal overlayClassName={Overlay} modalClassName={ModalContainer}>
+        <div>모달!</div>
+        <button onClick={hide}>닫기</button>
+      </Modal>
+    </div>
+  );
+}
+```
+
+<Canvas of={Modal.defaultStory} />

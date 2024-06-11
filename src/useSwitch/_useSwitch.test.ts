@@ -3,7 +3,7 @@ import { renderHook, act } from '@testing-library/react';
 
 describe('useSwitch 기능테스트', () => {
   it('useSwitch는 스위치(혹은 토글)의 켜짐 상태와 켜짐상태를 조절할 수 있는 함수들을 반환한다.', () => {
-    const { result } = renderHook(() => useSwitch(false));
+    const { result } = renderHook(() => useSwitch());
 
     expect(result.current.isOn).toBe(false);
     act(() => {

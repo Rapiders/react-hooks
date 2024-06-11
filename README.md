@@ -328,3 +328,44 @@ const SomeComponent = () => {
   );
 };
 ```
+
+### useModal
+
+A hook for easily managing an animated modal through a portal.
+
+#### Function Arguments
+
+modalProps object is accepted. This object is structured as follows:
+
+```ts
+interface UseModalProps {
+  modalRoot?: ModalRoot;
+  overlayClose?: boolean;
+  overlayAnimation?: {
+    showClassName?: string;
+    hideClassName?: string;
+  };
+  modalAnimation?: {
+    showClassName?: string;
+    hideClassName?: string;
+  };
+}
+```
+
+`modalRoot`: The HTMLElement where the modal will be rendered. The default is `document.body`.
+
+`overlayClose`: Sets whether clicking on the overlay closes the modal. The default is `true`.
+
+`overlayAnimation`: The animation className applied to the overlay. It can accept two key-value pairs: `showClassName` and `hideClassName`.
+
+`modalAnimation`: The animation className applied to the modal. It can accept two key-value pairs: `showClassName` and `hideClassName`.
+
+#### Return Values
+
+`Modal`: A component that renders its children to the specified root through a portal.
+
+`show`: Opens the modal.
+
+`hide`: Closes the modal.
+
+`isShow`: Indicates whether the modal is open.

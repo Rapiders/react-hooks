@@ -11,6 +11,7 @@ import useThrottle from './useThrottle/useThrottle';
 import useDebounce from './useDebounce/useDebounce';
 import useLocalStorage from './useLocalStorage/useLocalStorage';
 import useDisclosure from './useDisclosure/useDisclosure';
+import useModal from './useModal/useModal';
 
 export {
   useInput,
@@ -26,4 +27,5 @@ export {
   useDebounce,
   useLocalStorage,
   useDisclosure,
+  useModal,
 };

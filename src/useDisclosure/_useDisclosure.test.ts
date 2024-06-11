@@ -3,7 +3,7 @@ import { renderHook, act } from '@testing-library/react';
 
 describe('useDisclosure 기능테스트', () => {
   it('useDisclosure는 modal, disclosure와 같이 컴포넌트의 열림과 닫힘 상태를 조절할 수 있는 기능들을 반환한다.', () => {
-    const { result } = renderHook(() => useDisclosure(false));
+    const { result } = renderHook(() => useDisclosure());
 
     expect(result.current.isOpen).toBe(false);
     act(() => {
