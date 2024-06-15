@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { isServer } from '@/utils/isServer';
+import { isServer } from '../utils/isServer';
 
 interface UseLocalStorageOptions<T> {
   serializer?: (value: T) => string;
