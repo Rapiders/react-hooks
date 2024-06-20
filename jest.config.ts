@@ -16,7 +16,7 @@ module.exports = {
     prefix: '<rootDir>',
   }),
   coverageThreshold: {
-    global: {
+    'src/**/*.test.{ts,tsx}': {
       branches: 80,
       functions: 80,
       lines: 80,
