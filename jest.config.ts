@@ -19,7 +19,7 @@ module.exports = {
     'src/**/*.test.{ts,tsx}': {
       branches: 80,
       functions: 80,
-      lines: 80,
+      lines: 100,
     },
   },
 };
