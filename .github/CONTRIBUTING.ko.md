@@ -3,11 +3,23 @@
 커뮤니티의 모든 분들의 Contribution을 환영합니다.
 [영어](https://github.com/Rapiders/react-hooks/tree/main/.github/CONTRIBUTING.md)와 한국어 중 편한 언어를 사용하면 됩니다.
 
+## 테스트 코드 정책
+
+라이브러리의 품질을 보증하기위해 다음의 정책이 적용됩니다.
+하나의 기능에 대해
+
+1. branches의 coverage는 80%를 넘어야합니다. (추후 개선 100%로 변경예정)
+2. functions의 coverage는 80%를 넘어야합니다. (추후 개선 100%로 변경예정)
+3. lines는 반드시 100%여야합니다.
+
+해당 정책을 만족하지 못하는 경우 `git push`가 이뤄지지 않습니다.
+
 ## Fork
 
 1.  기여하고 싶은 경우 우선 이 레포지토리를 fork 합니다.
-2.  작업이 완료되었다면 main 브랜치로 PR을 오픈합니다.
-3.  merge 되기 위해서는 반드시 maintainer 중 한 명이 이상의 approve를 받아야 합니다.
+2.  npm install을 진행합니다.
+3.  작업이 완료되었다면 main 브랜치로 PR을 오픈합니다.
+4.  merge 되기 위해서는 반드시 maintainer 중 한 명이 이상의 approve를 받아야 합니다.
 
 ## Issue
 

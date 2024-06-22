@@ -3,11 +3,22 @@
 We welcome contribution from everyone in the community.
 you can use English and [Korean](https://github.com/Rapiders/react-hooks/tree/main/.github/CONTRIBUTING.ko.md)
 
+## Test Code Policy
+
+To ensure the quality of the library, the following policy is applied for each feature:
+
+1. Branch coverage must exceed 80%.
+2. Function coverage must exceed 80%.
+3. Line coverage must be 100%.
+
+If these requirements are not met, `git push` will not be allowed.
+
 ## Fork
 
 1. If you wish to contribute, first fork this repository.
-2. Once your work is complete, open a PR to the main branch.
-3. To be merged, it must receive at least one approval from a maintainer.
+2. npm install
+3. Once your work is complete, open a PR to the main branch.
+4. To be merged, it must receive at least one approval from a maintainer.
 
 ## Issue
 

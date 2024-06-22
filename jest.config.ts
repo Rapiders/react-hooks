@@ -15,4 +15,11 @@ module.exports = {
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: '<rootDir>',
   }),
+  coverageThreshold: {
+    'src/**/*.{ts,tsx}': {
+      branches: 80,
+      functions: 80,
+      lines: 100,
+    },
+  },
 };
