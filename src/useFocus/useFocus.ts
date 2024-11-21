@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef } from 'react';
 
 export default function useFocus<T extends HTMLElement>(
   onFocusCallback: (() => void) | (() => Promise<void>),
-  threshold?: number,
+  threshold = 0.1,
   rootMargin?: string,
 ) {
   const elementRef = useRef<T>(null);
@@ -22,7 +22,7 @@ export default function useFocus<T extends HTMLElement>(
 
     if (current) {
       observer = new IntersectionObserver(handleScroll, {
-        threshold: threshold || 0.1,
+        threshold,
         rootMargin: rootMargin || '0px 0px 0px 0px',
       });
 
