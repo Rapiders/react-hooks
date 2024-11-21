@@ -1,0 +1,22 @@
+import { Canvas, Meta, Description } from '@storybook/blocks';
+import * as Focus from './Focus.stories';
+
+<Meta of={Focus} />
+
+# useFocus
+
+DOM Element가 화면에 노출되었을때, callback으로 전달된 함수를 실행합니다.
+
+## 함수인자
+
+`onFocusCallback` : 요소가 focus되었을때, 수행할 함수입니다.
+
+`threshold` : 요소가 화면에 보일때의 기준을 결정합니다. 1이면 전체요소가 모두 화면에 들어왔을때 입니다.
+
+`rootMargin` : 화면의 너비, 높이를 조정할 수 있습니다. "top right bottom left" 형태로 기재하며 반드시 단위를 명시해야합니다.
+
+## 반환값
+
+`ref`: focus될 DOM요소에 할당해줄 ref 객체입니다.
+
+<Canvas of={Focus.defaultStory} />

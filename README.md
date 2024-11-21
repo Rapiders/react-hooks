@@ -204,6 +204,20 @@ You can determine the initial on/off state of the toggle through `defaultValue`.
 
 `toggle` : Reverses the current state of the switch.
 
+### useFocus
+
+Executes the provided callback function when a DOM element becomes visible on the screen.
+
+#### Parameters
+
+`onFocusCallback`: A function to execute when the element comes into focus.
+`threshold`: Determines the visibility threshold for the element. A value of 1 means the element must be fully visible within the viewport.
+`rootMargin`: Adjusts the viewport’s dimensions using the format "top right bottom left", with units explicitly specified.
+
+#### Return Value
+
+`ref`: A ref object to assign to the DOM element that should trigger the focus callback.
+
 ## Animation
 
 The animation of this package is based on ClassName by default.

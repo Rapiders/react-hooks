@@ -11,6 +11,7 @@ import useDebounce from './useDebounce/useDebounce';
 import useLocalStorage from './useLocalStorage/useLocalStorage';
 import useDisclosure from './useDisclosure/useDisclosure';
 import useModal from './useModal/useModal';
+import useFocus from './useFocus/useFocus';
 
 export {
   useInput,
@@ -26,4 +27,5 @@ export {
   useLocalStorage,
   useDisclosure,
   useModal,
+  useFocus,
 };
